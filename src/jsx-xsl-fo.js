@@ -51,8 +51,20 @@ export class Component {
     }
 }
 
+const Children {
+    map(children, fn, thisArg = null) {
+        if (Array.isArray(children)) {
+
+        }
+        else {
+            return fn.call(thisArg, children);
+        }
+    }
+}
+
 export default {
     createElement,
     renderToString,
-    Component
+    Component,
+    Children
 };
