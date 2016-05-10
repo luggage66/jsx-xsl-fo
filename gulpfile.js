@@ -16,6 +16,6 @@ gulp.task('default', () => {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', ['default'], () => {
     return gulp.watch(paths.src, ['default']);
 });

@@ -2,22 +2,29 @@ import decamelize from 'decamelize';
 
 const XSLFOElementType = Symbol('xslfo.element');
 
-function reduceChildren(children) {
-    if (!children) return '';
+const twoPartProperties = [
+    'keep-together',
+    'keep-with-next',
+    'keep-with-previous'
+];
 
-    if (!Array.isArray(children)) {
-        if (typeof(children) === 'string') return children;
+function fixAttributeName(attributeName) {
+    attributeName = decamelize(attributeName, '-');
 
-        return renderToString(children);
+    let splitFrom = twoPartProperties.find(p => attributeName.indexOf(p) === 0);
+
+    if (splitFrom) {
+        return `${splitFrom}.${attributeName.substring(splitFrom.length + 1)}`
     }
-
-    return children.reduce((prev, curr) => prev + reduceChildren(curr), '');
+    else {
+        return attributeName;
+    }
 }
 
 function renderAttributes(attributes) {
     if (!attributes) return;
 
-    return Object.keys(attributes).reduce((prev, curr) => prev + ' ' + decamelize(curr, '-') + '="' + attributes[curr] + '"', '');
+    return Object.keys(attributes).reduce((prev, curr) => prev + ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"', '');
 }
 
 export function createElement(type, props, ...children) {
@@ -31,22 +38,6 @@ export function createElement(type, props, ...children) {
 
     return element;
 }
-
-// export function renderToString(element) {
-//
-//     if (typeof(element.tag) === 'string') {
-//         let tagString = 'fo:' + decamelize(element.tag, '-');
-//
-//         let attributesString = renderAttributes(element.props);
-//
-//         let childrenAsString = reduceChildren(element.children);
-//
-//         return `<${tagString} ${attributesString ? attributesString : ''}>${childrenAsString}</${tagString}>`;
-//     }
-//     else {
-//         return renderToString(element.render());
-//     }
-// }
 
 export function renderToString(element) {
     let elementTree = process(element);
