@@ -4,30 +4,31 @@ import uuid from 'uuid';
 
 export class Report extends Component {
     render() {
+        let newChildren = this.props.children.map(sequenceElement => {
+            let sequenceId = uuid.v4();
+            return XSLFO.cloneElement(sequenceElement, { sequenceId });
+        });
+
         return <root {...{"xmlns:fo": "http://www.w3.org/1999/XSL/Format"}} {...this.props}>
             <layoutMasterSet>
-                {this.children.map(sequence => {
-                    return <simplePageMaster master-name={sequence.sequenceId} page-height="29.7cm" page-width="21.0cm" margin="2cm">
+                {newChildren.map(sequence => {
+
+                    return <simplePageMaster master-name={sequence.props.sequenceId} page-height="29.7cm" page-width="21.0cm" margin="2cm">
                         <regionBody />
                         <regionBefore extent="1.2em" />
                     </simplePageMaster>
                 })}
             </layoutMasterSet>
-            {this.children}
+            {newChildren}
         </root>
     }
 }
 
 export class PageSequence extends Component {
-    constructor(props, children) {
-        super(props, children);
-
-        this.sequenceId = uuid.v4();
-    }
 
     render() {
-        return <pageSequence masterReference={this.sequenceId}>
-            {this.children}
+        return <pageSequence masterReference={this.props.sequenceId}>
+            {this.props.children}
         </pageSequence>;
     }
 }
@@ -35,7 +36,7 @@ export class PageSequence extends Component {
 export class PageContent extends Component {
     render() {
         return <flow flowName="xsl-region-body">
-            {this.children}
+            {this.props.children}
         </flow>;
     }
 }
@@ -43,7 +44,7 @@ export class PageContent extends Component {
 export class PageHeader extends Component {
     render() {
         return <staticContent flowName="xsl-region-before">
-            {this.children}
+            {this.props.children}
         </staticContent>;
     }
 }
