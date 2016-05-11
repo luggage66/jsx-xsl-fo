@@ -4,22 +4,50 @@ import uuid from 'uuid';
 
 export class Report extends Component {
     render() {
-        let newChildren = this.props.children.map(sequenceElement => {
-            let sequenceId = uuid.v4();
-            return XSLFO.cloneElement(sequenceElement, { sequenceId });
+        let pageSequences = [];
+
+        let newChildren = XSLFO.Children.map(this.props.children, (child) => {
+            if (child) {
+                if (child.type !== PageSequence) throw new Error("Unknown child type. needs PageSequence");
+
+                let sequenceId = uuid.v4();
+
+                let s ={
+                    sequenceId,
+                    element: XSLFO.cloneElement(child, { sequenceId })
+                };
+
+                XSLFO.Children.map(child.props.children, (flow) => {
+                    if (flow) {
+                        switch (flow.type) {
+                            case PageHeader:
+                                s.header = <regionBefore extent={flow.props.extent} />;
+                                break;
+                            case PageFooter:
+                                s.footer = <regionAfter extent={flow.props.extent} />;
+                                break;
+                            case PageContent:
+                                s.body = <regionBody />;
+                                break;
+                            default:
+                                throw new Error("Unknown child type. needs PageFooter, PageHeader or PageContent");
+                        }
+                    }
+                });
+
+                pageSequences.push(s);
+            }
         });
 
         return <root {...{"xmlns:fo": "http://www.w3.org/1999/XSL/Format"}} {...this.props}>
             <layoutMasterSet>
-                {newChildren.map(sequence => {
-
-                    return <simplePageMaster master-name={sequence.props.sequenceId} page-height="29.7cm" page-width="21.0cm" margin="2cm">
-                        <regionBody />
-                        <regionBefore extent="1.2em" />
+                {pageSequences.map(s => {
+                    return <simplePageMaster master-name={s.sequenceId} page-height="29.7cm" page-width="21.0cm" margin="2cm">
+                        {[s.body, s.header, s.footer]}
                     </simplePageMaster>
                 })}
             </layoutMasterSet>
-            {newChildren}
+            {pageSequences.map(s => s.element)}
         </root>
     }
 }
@@ -44,6 +72,14 @@ export class PageContent extends Component {
 export class PageHeader extends Component {
     render() {
         return <staticContent flowName="xsl-region-before">
+            {this.props.children}
+        </staticContent>;
+    }
+}
+
+export class PageFooter extends Component {
+    render() {
+        return <staticContent flowName="xsl-region-after">
             {this.props.children}
         </staticContent>;
     }

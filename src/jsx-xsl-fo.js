@@ -24,7 +24,7 @@ function fixAttributeName(attributeName) {
 function renderAttributes(attributes) {
     if (!attributes) return;
 
-    return Object.keys(attributes).reduce((prev, curr) => prev + ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"', '');
+    return Object.keys(attributes).reduce((prev, curr) => prev + (attributes[curr] !== undefined ? ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"' : ''), '');
 }
 
 export function createElement(type, props, ...children) {
@@ -46,6 +46,8 @@ export function renderToString(element) {
 }
 
 function elementToString(element) {
+    if (!element) return '';
+
     if (typeof(element) === 'string') {
         return element;
     }
@@ -71,9 +73,9 @@ export class Component {
 }
 
 const Children = {
-    map(children, fn, thisArg = null) {
+    map(children, fn, thisArg) {
         if (Array.isArray(children)) {
-
+            Array.prototype.forEach.call(children, (child) => Children.map(child, fn, thisArg));
         }
         else {
             return fn.call(thisArg, children);
@@ -82,6 +84,8 @@ const Children = {
 }
 
 function process(element) {
+    if (!element) return element;
+
     if (typeof(element) === 'string') {
         return element;
     }
