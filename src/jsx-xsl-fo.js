@@ -1,4 +1,5 @@
 import decamelize from 'decamelize';
+import XMLWriter from 'xml-writer';
 
 const XSLFOElementType = Symbol('xslfo.element');
 
@@ -39,27 +40,46 @@ export function createElement(type, props, ...children) {
     return element;
 }
 
-export function renderToString(element) {
-    let elementTree = process(element);
-
-    return elementToString(elementTree);
-}
-
-function elementToString(element) {
-    if (!element) return '';
+function elementToStream(element, writer) {
+    if (!element) return;
 
     if (typeof(element) === 'string') {
-        return element;
+        writer.text(element);
     }
     else if (Array.isArray(element)) {
-        return element.reduce((prev, curr) => prev + elementToString(curr), '');
+        Array.prototype.forEach.call(element, (e) => elementToStream(e, writer));
     }
     else {
-        let attributesString = renderAttributes(element.attributes);
-        let childrenAsString = elementToString(element.children);
+        writer.startElementNS('fo', element.tag);
 
-        return `<${element.tag} ${attributesString ? attributesString : ''}>${childrenAsString}</${element.tag}>`;
+        for (let attributeName in element.attributes) {
+            writer.writeAttribute(fixAttributeName(attributeName), element.attributes[attributeName]);
+        }
+
+        elementToStream(element.children, writer);
+
+        writer.endElement();
     }
+}
+
+function renderToXmlWriter(element, writer) {
+    let elementTree = process(element);
+
+    writer.startDocument('1.0', 'UTF-8');
+    elementToStream(elementTree, writer);
+    writer.endDocument();
+}
+
+function renderToString(element) {
+    let writer = new XMLWriter(true);
+    renderToXmlWriter(element, writer);
+
+    return writer.toString();
+}
+
+function renderToStream(element, stream) {
+    let writer = new XMLWriter(true, stream.write.bind(stream));
+    renderToXmlWriter(element, writer);
 }
 
 export class Component {
@@ -100,7 +120,7 @@ function process(element) {
             children = process(children);
 
             return {
-                tag: 'fo:' + decamelize(element.type, '-'),
+                tag: decamelize(element.type, '-'),
                 attributes,
                 children
             };
@@ -140,6 +160,7 @@ function cloneElement(element, props, ...children) {
 export default {
     createElement,
     renderToString,
+    renderToStream,
     Component,
     Children,
     process,
