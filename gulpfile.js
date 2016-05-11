@@ -9,9 +9,7 @@ const paths = {
 gulp.task('default', () => {
     return gulp.src(paths.src)
         .pipe(sourcemaps.init())
-        .pipe(babel({
-            presets: ['es2015']
-        }))
+        .pipe(babel())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 });
