@@ -1,5 +1,7 @@
 A JSX to XSL-FO templating tool with react-like API.
 
+[![Join the chat at https://gitter.im/luggage66/jsx-xsl-fo](https://badges.gitter.im/luggage66/jsx-xsl-fo.svg)](https://gitter.im/luggage66/jsx-xsl-fo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ```js
 /** @jsx XSLFO.createElement */
 import XSLFO, { Component } from 'jsx-xsl-fo';
@@ -39,6 +41,22 @@ function generateReport(data) {
         </PageSequence>
     </Report>;
 }
+
+// Make some Test Data
+import faker from 'faker';
+let data = {
+    // make some fake contacts
+    contacts: (new Array(100).fill()).map(() => ({
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        streetAddress: faker.address.streetAddress(),
+        city: faker.address.city(),
+        state: faker.address.stateAbbr(),
+        zipCode: faker.address.zipCode()
+    }))
+};
+
+XSLFO.renderToStream(generateReport(data), process.stdout);
 ```
 
 Generates:
