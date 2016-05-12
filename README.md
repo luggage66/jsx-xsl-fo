@@ -75,3 +75,6 @@ Generates:
     </fo:page-sequence>
 </fo:root>
 ```
+
+
+[![Join the chat at https://gitter.im/luggage66/jsx-xsl-fo](https://badges.gitter.im/luggage66/jsx-xsl-fo.svg)](https://gitter.im/luggage66/jsx-xsl-fo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
