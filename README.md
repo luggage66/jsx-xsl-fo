@@ -115,11 +115,15 @@ This will render to:
 </fo:root>
 ```
 
+If you need to embed some other xml (e.g. SVG) use `dangerouslySetInnerXML`.
+
+```js
+<instream-foreign-object dangerouslySetInnerXML={{__xml: logoLarge}}>
+</instream-foreign-object>
+```
+
 # Future Plans
 
-* Short Term
-  * handle all two-part attributes names (e.g. `space-before.minimum="2.0pt"`)
-  * allow embedding other XML (like SVGs) or at least some equivalent to `dangerouslySetInnerHTML`
 * Medium Term
   * More helpful Components for common reporting tasks
 * Should I go toward integrating with react, or going standalone and having more helpers for generating PDFs (like dealing for FOP or other xsl-fo renders)?
