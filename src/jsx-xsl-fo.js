@@ -79,11 +79,23 @@ function elementToStream(element, writer) {
     else {
         writer.startElementNS('fo', element.tag);
 
+        let innerXML;
+        
         for (let attributeName in element.attributes) {
-            writer.writeAttribute(fixAttributeName(attributeName), element.attributes[attributeName]);
+            if (attributeName === 'dangerouslySetInnerXML') {
+                innerXML = element.attributes[attributeName].__xml;
+            }
+            else {
+                writer.writeAttribute(fixAttributeName(attributeName), element.attributes[attributeName]);
+            }
         }
 
-        elementToStream(element.children, writer);
+        if (innerXML) {
+            writer.writeRaw(innerXML);
+        }
+        else {
+            elementToStream(element.children, writer);
+        }
 
         writer.endElement();
     }
