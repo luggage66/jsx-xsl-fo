@@ -4,10 +4,37 @@ import XMLWriter from 'xml-writer';
 const XSLFOElementType = Symbol('xslfo.element');
 
 const twoPartProperties = [
-    'keep-together',
-    'keep-with-next',
-    'keep-with-previous'
-];
+    'block-progression-dimension.maximum',
+    'block-progression-dimension.minimum',
+    'block-progression-dimension.optimum',
+    'border-before-width.conditional',
+    'border-before-width.length',
+    'border-separation.block-progression-direction',
+    'border-separation.inline-progression-direction',
+    'inline-progression-dimension.maximum',
+    'inline-progression-dimension.minimum',
+    'inline-progression-dimension.optimum',
+    'keep-together.within-column',
+    'keep-together.within-line',
+    'keep-together.within-page',
+    'keep-with-next.within-line',
+    'keep-with-previous.within-line',
+    'leader-length.maximum',
+    'leader-length.minimum',
+    'leader-length.optimum',
+    'line-height.conditionality',
+    'line-height.maximum',
+    'line-height.minimum',
+    'line-height.optimum',
+    'line-height.precedence',
+    'space-after.precedence',
+    'space-before.conditionality',
+    'space-before.maximum',
+    'space-before.minimum',
+    'space-before.optimum',
+    'space-before.precedence',
+    'space.minimum'
+].map(p => p.replace(/[.].*/, ''));
 
 function fixAttributeName(attributeName) {
     attributeName = decamelize(attributeName, '-');
