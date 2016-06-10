@@ -80,9 +80,10 @@ function elementToStream(element, writer) {
         writer.startElementNS('fo', element.tag);
 
         let innerXML;
-        
+
         for (let attributeName in element.attributes) {
             if (attributeName === 'dangerouslySetInnerXML') {
+                console.error(element.attributes[attributeName].__xml);
                 innerXML = element.attributes[attributeName].__xml;
             }
             else {
@@ -148,11 +149,14 @@ function process(element) {
     if (typeof(element) === 'string') {
         return element;
     }
+    else if (typeof(element) === 'number') {
+        return element.toString();
+    }
     else if (Array.isArray(element)) {
         return element.map(process);
     }
     else {
-        if (element.$$typeof !== XSLFOElementType) throw Error("Not an XSLFOElement");
+        if (element.$$typeof !== XSLFOElementType) throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${element.$$typeof}`);
         if (typeof(element.type) === 'string') {
             let { children, ...attributes } = element.props;
 

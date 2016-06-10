@@ -12,22 +12,26 @@ export class Report extends Component {
 
                 let sequenceId = uuid.v4();
 
+                let { children, pageSize, ...props } = child.props;
+
                 let s ={
                     sequenceId,
-                    element: XSLFO.cloneElement(child, { sequenceId })
+                    element: XSLFO.cloneElement(child, { sequenceId }),
+                    pageSize,
+                    props
                 };
 
-                XSLFO.Children.map(child.props.children, (flow) => {
+                XSLFO.Children.map(children, (flow) => {
                     if (flow) {
                         switch (flow.type) {
                             case PageHeader:
-                                s.header = <regionBefore extent={flow.props.extent} />;
+                                s.header = <regionBefore {...flow.props} />;
                                 break;
                             case PageFooter:
-                                s.footer = <regionAfter extent={flow.props.extent} />;
+                                s.footer = <regionAfter {...flow.props} />;
                                 break;
                             case PageContent:
-                                s.body = <regionBody />;
+                                s.body = <regionBody {...flow.props} />;
                                 break;
                             default:
                                 throw new Error("Unknown child type. needs PageFooter, PageHeader or PageContent");
@@ -42,7 +46,7 @@ export class Report extends Component {
         return <root {...{"xmlns:fo": "http://www.w3.org/1999/XSL/Format"}} {...this.props}>
             <layoutMasterSet>
                 {pageSequences.map(s => {
-                    return <simplePageMaster master-name={s.sequenceId} page-height="29.7cm" page-width="21.0cm" margin="2cm">
+                    return <simplePageMaster master-name={s.sequenceId} {...s.pageSize} {...s.props} >
                         {[s.body, s.header, s.footer]}
                     </simplePageMaster>
                 })}
@@ -82,5 +86,16 @@ export class PageFooter extends Component {
         return <staticContent flowName="xsl-region-after">
             {this.props.children}
         </staticContent>;
+    }
+}
+
+export const PAGE_SIZES = {
+    LETTER_PORTRAIT: {
+        'page-height': "29.7cm",
+        'page-width': "21.0cm"
+    },
+    LETTER_LANDSCAPE: {
+        'page-height': "21.0cm",
+        'page-width': "29.7cm"
     }
 }
