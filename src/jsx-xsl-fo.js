@@ -1,5 +1,6 @@
 import decamelize from 'decamelize';
 import XMLWriter from 'xml-writer';
+import process from 'process';
 
 const XSLFOElementType = Symbol('xslfo.element');
 
@@ -62,7 +63,7 @@ export function createElement(type, props, ...children) {
         props: { ...props }
     }
 
-    if (children) element.props.children = children;
+    if (children) element.props.children = children.length === 1 ? children[0] : children;
 
     return element;
 }
@@ -83,7 +84,6 @@ function elementToStream(element, writer) {
 
         for (let attributeName in element.attributes) {
             if (attributeName === 'dangerouslySetInnerXML') {
-                console.error(element.attributes[attributeName].__xml);
                 innerXML = element.attributes[attributeName].__xml;
             }
             else {
@@ -103,7 +103,7 @@ function elementToStream(element, writer) {
 }
 
 function renderToXmlWriter(element, writer) {
-    let elementTree = process(element);
+    let elementTree = processElement(element);
 
     writer.startDocument('1.0', 'UTF-8');
     elementToStream(elementTree, writer);
@@ -118,7 +118,9 @@ function renderToString(element) {
 }
 
 function renderToStream(element, stream) {
-    let writer = new XMLWriter(true, stream.write.bind(stream));
+    let writer = new XMLWriter(true, (a, b) => {
+        stream.write(a, 'utf8');
+    });
     renderToXmlWriter(element, writer);
 }
 
@@ -140,10 +142,26 @@ const Children = {
         else {
             return fn.call(thisArg, children);
         }
+    },
+    only(children) {
+        if (Array.isArray(children)) {
+            throw new Error("XSLFO.Children.only should only be passed a children with exactly one child.");
+        }
+        if (typeof(children) === 'undefined') {
+            throw new Error("XSLFO.Children.only should only be passed a children with exactly one child.");
+        }
+
+        return children;
+    },
+    // prolly not the most performant
+    count(children) {
+        let count = 0;
+        this.map(children, x => count++);
+        return count;
     }
 }
 
-function process(element) {
+function processElement(element) {
     if (!element) return element;
 
     if (typeof(element) === 'string') {
@@ -153,14 +171,14 @@ function process(element) {
         return element.toString();
     }
     else if (Array.isArray(element)) {
-        return element.map(process);
+        return element.map(processElement);
     }
     else {
         if (element.$$typeof !== XSLFOElementType) throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${element.$$typeof}`);
         if (typeof(element.type) === 'string') {
             let { children, ...attributes } = element.props;
 
-            children = process(children);
+            children = processElement(children);
 
             return {
                 tag: decamelize(element.type, '-'),
@@ -185,7 +203,7 @@ function process(element) {
                 throw new Error("I don't know what this is...");
             }
 
-            return process(childTree);
+            return processElement(childTree);
         }
     }
 }
@@ -206,6 +224,6 @@ export default {
     renderToStream,
     Component,
     Children,
-    process,
+    processElement,
     cloneElement
 };
