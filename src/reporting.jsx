@@ -91,11 +91,11 @@ export class PageFooter extends Component {
 
 export const PAGE_SIZES = {
     LETTER_PORTRAIT: {
-        'page-height': "29.7cm",
-        'page-width': "21.0cm"
+        'page-height': "11in",
+        'page-width': "8.5in"
     },
     LETTER_LANDSCAPE: {
-        'page-height': "21.0cm",
-        'page-width': "29.7cm"
+        'page-height': "8.5in",
+        'page-width': "11in"
     }
 }
