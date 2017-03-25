@@ -43,7 +43,7 @@ function fixAttributeName(attributeName) {
     let splitFrom = twoPartProperties.find(p => attributeName.indexOf(p) === 0);
 
     if (splitFrom) {
-        return `${splitFrom}.${attributeName.substring(splitFrom.length + 1)}`
+        return `${splitFrom}.${attributeName.substring(splitFrom.length + 1)}`;
     }
     else {
         return attributeName;
@@ -51,9 +51,11 @@ function fixAttributeName(attributeName) {
 }
 
 function renderAttributes(attributes) {
-    if (!attributes) return;
+    if (!attributes) { return; }
 
-    return Object.keys(attributes).reduce((prev, curr) => prev + (attributes[curr] !== undefined ? ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"' : ''), '');
+    return Object.keys(attributes).reduce((prev, curr) => {
+        return prev + (attributes[curr] !== undefined ? ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"' : '');
+    }, '');
 }
 
 export function createElement(type, props, ...children) {
@@ -61,15 +63,15 @@ export function createElement(type, props, ...children) {
         $$typeof: XSLFOElementType,
         type,
         props: { ...props }
-    }
+    };
 
-    if (children) element.props.children = children.length === 1 ? children[0] : children;
+    if (children) { element.props.children = children.length === 1 ? children[0] : children; }
 
     return element;
 }
 
 function elementToStream(element, writer) {
-    if (!element) return;
+    if (!element) { return; }
 
     if (typeof(element) === 'string') {
         writer.text(element);
@@ -125,6 +127,8 @@ function renderToStream(element, stream) {
 }
 
 export class Component {
+    props: any;
+
     constructor(props) {
         this.props = props;
     }
@@ -135,7 +139,7 @@ export class Component {
 }
 
 const Children = {
-    map(children, fn, thisArg) {
+    map(children, fn, thisArg?: any) {
         if (Array.isArray(children)) {
             Array.prototype.forEach.call(children, (child) => Children.map(child, fn, thisArg));
         }
@@ -159,10 +163,10 @@ const Children = {
         this.map(children, x => count++);
         return count;
     }
-}
+};
 
 function processElement(element) {
-    if (!element) return element;
+    if (!element) { return element; }
 
     if (typeof(element) === 'string') {
         return element;
@@ -174,7 +178,10 @@ function processElement(element) {
         return element.map(processElement);
     }
     else {
-        if (element.$$typeof !== XSLFOElementType) throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${element.$$typeof}`);
+        if (element.$$typeof !== XSLFOElementType) {
+            throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${element.$$typeof}`);
+        }
+
         if (typeof(element.type) === 'string') {
             let { children, ...attributes } = element.props;
 
@@ -187,7 +194,7 @@ function processElement(element) {
             };
         }
         else {
-            let type, childTree;
+            let childTree;
 
             if (typeof(element.type === 'function')) {
                 let type = new element.type(element.props);

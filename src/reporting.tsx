@@ -8,17 +8,22 @@ export class Report extends Component {
 
         let newChildren = XSLFO.Children.map(this.props.children, (child) => {
             if (child) {
-                if (child.type !== PageSequence) throw new Error("Unknown child type. needs PageSequence");
+                if (child.type !== PageSequence) {
+                    throw new Error("Unknown child type. needs PageSequence");
+                }
 
                 let sequenceId = uuid.v4();
 
                 let { children, pageSize, ...props } = child.props;
 
-                let s ={
+                let s = {
                     sequenceId,
                     element: XSLFO.cloneElement(child, { sequenceId }),
                     pageSize,
-                    props
+                    props,
+                    body: undefined,
+                    header: undefined,
+                    footer: undefined
                 };
 
                 XSLFO.Children.map(children, (flow) => {
@@ -48,11 +53,11 @@ export class Report extends Component {
                 {pageSequences.map(s => {
                     return <simplePageMaster master-name={s.sequenceId} {...s.pageSize} {...s.props} >
                         {[s.body, s.header, s.footer]}
-                    </simplePageMaster>
+                    </simplePageMaster>;
                 })}
             </layoutMasterSet>
             {pageSequences.map(s => s.element)}
-        </root>
+        </root>;
     }
 }
 
@@ -98,4 +103,4 @@ export const PAGE_SIZES = {
         'page-height': "8.5in",
         'page-width': "11in"
     }
-}
+};
