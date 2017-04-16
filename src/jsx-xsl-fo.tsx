@@ -1,6 +1,6 @@
-import decamelize from 'decamelize';
-import XMLWriter from 'xml-writer';
-import process from 'process';
+import * as decamelize from 'decamelize';
+import * as XMLWriter from 'xml-writer';
+import * as process from 'process';
 
 const XSLFOElementType = Symbol('xslfo.element');
 

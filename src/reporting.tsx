@@ -1,6 +1,6 @@
 /** @jsx XSLFO.createElement */
 import XSLFO, { Component } from './jsx-xsl-fo';
-import uuid from 'uuid';
+import * as uuid from 'uuid';
 
 export class Report extends Component {
     render() {
