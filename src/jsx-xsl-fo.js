@@ -56,7 +56,7 @@ function renderAttributes(attributes) {
     return Object.keys(attributes).reduce((prev, curr) => prev + (attributes[curr] !== undefined ? ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"' : ''), '');
 }
 
-export function createElement(type, props, ...children) {
+function createElement(type, props, ...children) {
     let element = {
         $$typeof: XSLFOElementType,
         type,
@@ -124,7 +124,7 @@ function renderToStream(element, stream) {
     renderToXmlWriter(element, writer);
 }
 
-export class Component {
+class Component {
     constructor(props) {
         this.props = props;
     }
@@ -219,6 +219,16 @@ function cloneElement(element, props, ...children) {
 }
 
 export default {
+    createElement,
+    renderToString,
+    renderToStream,
+    Component,
+    Children,
+    processElement,
+    cloneElement
+};
+
+export {
     createElement,
     renderToString,
     renderToStream,
