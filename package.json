@@ -1,6 +1,6 @@
 {
   "name": "jsx-xsl-fo",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Use JSX as a template language to generate XSL-FO documents.",
   "main": "dist/jsx-xsl-fo.js",
   "scripts": {

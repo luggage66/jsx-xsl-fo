@@ -58,7 +58,7 @@ function renderAttributes(attributes) {
     }, '');
 }
 
-export function createElement(type, props, ...children) {
+function createElement(type, props, ...children) {
     let element = {
         $$typeof: XSLFOElementType,
         type,
@@ -126,7 +126,7 @@ function renderToStream(element, stream) {
     renderToXmlWriter(element, writer);
 }
 
-export class Component {
+class Component {
     props: any;
 
     constructor(props) {
@@ -226,6 +226,16 @@ function cloneElement(element, props, ...children) {
 }
 
 export default {
+    createElement,
+    renderToString,
+    renderToStream,
+    Component,
+    Children,
+    processElement,
+    cloneElement
+};
+
+export {
     createElement,
     renderToString,
     renderToStream,
