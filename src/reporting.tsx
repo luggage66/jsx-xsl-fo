@@ -1,8 +1,10 @@
 /** @jsx XSLFO.createElement */
-import XSLFO, { Component } from './jsx-xsl-fo';
+import * as XSLFO from './jsx-xsl-fo';
 import * as uuid from 'uuid';
 
-export class Report extends Component {
+let foo = <bar />;
+
+export class Report extends XSLFO.Component<{}> {
     render() {
         let pageSequences = [];
 
@@ -61,7 +63,7 @@ export class Report extends Component {
     }
 }
 
-export class PageSequence extends Component {
+export class PageSequence extends XSLFO.Component<{ sequenceId: string }> {
 
     render() {
         return <pageSequence masterReference={this.props.sequenceId}>
@@ -70,7 +72,7 @@ export class PageSequence extends Component {
     }
 }
 
-export class PageContent extends Component {
+export class PageContent extends XSLFO.Component<void> {
     render() {
         return <flow flowName="xsl-region-body">
             {this.props.children}
@@ -78,7 +80,7 @@ export class PageContent extends Component {
     }
 }
 
-export class PageHeader extends Component {
+export class PageHeader extends XSLFO.Component<void> {
     render() {
         return <staticContent flowName="xsl-region-before">
             {this.props.children}
@@ -86,7 +88,7 @@ export class PageHeader extends Component {
     }
 }
 
-export class PageFooter extends Component {
+export class PageFooter extends XSLFO.Component<void> {
     render() {
         return <staticContent flowName="xsl-region-after">
             {this.props.children}
