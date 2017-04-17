@@ -5,7 +5,7 @@
   "main": "dist/jsx-xsl-fo.js",
   "types": "dist/jsx-xsl-fo.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -26,15 +26,10 @@
   "homepage": "https://github.com/luggage66/jsx-xsl-fo#readme",
   "devDependencies": {
     "@types/node": "^7.0.11",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^3.1.6",
     "tslint": "^4.5.1",
     "typescript": "^2.2.1"
   },
   "dependencies": {
-    "babel-runtime": "^6.6.1",
     "decamelize": "^1.2.0",
     "uuid": "^2.0.2",
     "xml-writer": "^1.7.0"
