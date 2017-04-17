@@ -1,5 +1,5 @@
 /** @jsx XSLFO.createElement */
-import * as XSLFO from './jsx-xsl-fo';
+import * as XSLFO from './index';
 import * as uuid from 'uuid';
 
 let foo = <bar />;
