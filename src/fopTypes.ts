@@ -1,4 +1,13 @@
 // Generated with https://github.com/charto/cxsd and then heavily modified.
+// tslint:disable:class-name
+
+import {
+    BorderPaddingAndBackgroundProperties,
+    BorderProperties,
+    BackgroundProperties,
+    BorderPrecedenceProperties,
+    AccessibilityProperties
+} from './fopTypes2';
 
 // Source files:
 // https://svn.apache.org/repos/asf/xmlgraphics/fop/trunk/fop/src/foschema/fop.xsd
@@ -29,8 +38,6 @@ export type azimuth_base_Type = ("left-side" | "far-left" | "left" | "center-lef
 
 export type azimuth_Type = string;
 
-export type background_attachment_Type = ("scroll" | "fixed" | "inherit");
-
 export type background_color_Type = string;
 
 export type background_image_Type = ("uri-specification" | "none" | "inherit");
@@ -51,8 +58,6 @@ export type background_position_Type = string;
 
 export type background_position_vertical_Type = string;
 
-export type background_repeat_Type = ("repeat" | "repeat-x" | "repeat-y" | "no-repeat" | "inherit");
-
 export type background_Type = string;
 
 export type baseline_base_Type = ("baseline" | "sub" | "super");
@@ -60,69 +65,31 @@ export type baseline_base_Type = ("baseline" | "sub" | "super");
 export type baseline_shift_Type = string;
 
 /** Inheritable */
-export interface _BasicLinkType {
+export interface _BasicLinkType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -190,31 +157,7 @@ export interface _BasicLinkType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -230,13 +173,12 @@ export interface _BasicLinkType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
     showDestination: show_destination_Type;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -275,29 +217,6 @@ export interface _BasicLinkType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    float?: FloatType[];
-    footnote?: FootnoteType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    marker?: MarkerType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
-    wrapper?: WrapperType[];
 }
 export type BasicLinkType = Partial<_BasicLinkType>;
 
@@ -414,29 +333,6 @@ export interface _BidiOverrideType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    float?: FloatType[];
-    footnote?: FootnoteType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    marker?: MarkerType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
-    wrapper?: WrapperType[];
 }
 export type BidiOverrideType = Partial<_BidiOverrideType>;
 
@@ -447,70 +343,32 @@ export type block_progression_dimension_maximum_Type = string;
 export type block_progression_dimension_optimum_Type = string;
 
 /** Inheritable */
-export interface _BlockContainerType {
+export interface _BlockContainerType extends BorderPaddingAndBackgroundProperties {
     absolutePosition: absolute_position_Type;
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     breakAfter: breaks_Type;
@@ -578,31 +436,7 @@ export interface _BlockContainerType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakAfter: page_break_after_Type;
     pageBreakBefore: page_break_after_Type;
     pageBreakInside: page_break_inside_Type;
@@ -645,82 +479,32 @@ export interface _BlockContainerType {
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
     zIndex: string;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    marker: MarkerType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type BlockContainerType = Partial<_BlockContainerType>;
 
 /** Inheritable */
-export interface _BlockType {
+export interface _BlockType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     breakAfter: breaks_Type;
@@ -785,31 +569,7 @@ export interface _BlockType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakAfter: page_break_after_Type;
     pageBreakBefore: page_break_after_Type;
     pageBreakInside: page_break_inside_Type;
@@ -827,12 +587,11 @@ export interface _BlockType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceAfter: string;
     spaceAfterConditionality: conditionality_Type;
     spaceAfterMaximum: string;
@@ -870,30 +629,6 @@ export interface _BlockType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    float?: FloatType[];
-    footnote?: FootnoteType[];
-    initialPropertySet?: InitialPropertySetType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    marker?: MarkerType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
-    wrapper?: WrapperType[];
 }
 export type BlockType = Partial<_BlockType>;
 
@@ -940,69 +675,31 @@ export type caption_side_Type = ("before" | "after" | "start" | "end" | "top" | 
 export type character_Type = string;
 
 /** Inheritable */
-export interface _CharacterType {
+export interface _CharacterType extends BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -1067,31 +764,7 @@ export interface _CharacterType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -1442,7 +1115,6 @@ export interface _DeclarationsType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    colorProfile: ColorProfileType[];
 }
 export type DeclarationsType = Partial<_DeclarationsType>;
 
@@ -1465,73 +1137,35 @@ export type ends_row_Type = ("true" | "false");
 export type extent_Type = string;
 
 /** Inheritable */
-export interface _ExternalGraphicType {
+export interface _ExternalGraphicType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -1605,31 +1239,7 @@ export interface _ExternalGraphicType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -1645,14 +1255,13 @@ export interface _ExternalGraphicType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scaling: scaling_Type;
     scalingMethod: scaling_method_Type;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -1784,17 +1393,6 @@ export interface _FloatType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type FloatType = Partial<_FloatType>;
 
@@ -1883,18 +1481,6 @@ export interface _FlowType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    marker: MarkerType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type FlowType = Partial<_FlowType>;
 
@@ -1912,7 +1498,7 @@ export type font_variant_Type = ("normal" | "small-caps" | "inherit");
 
 export type font_weight_Type = ("normal" | "bold" | "bolder" | "lighter" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "inherit");
 
-export interface _FootnoteBodyType {
+export interface _FootnoteBodyType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     borderBottom: string;
@@ -1979,12 +1565,11 @@ export interface _FootnoteBodyType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     textAlign: text_align_Type;
     textAlignLast: text_align_last_Type;
@@ -1998,21 +1583,10 @@ export interface _FootnoteBodyType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type FootnoteBodyType = Partial<_FootnoteBodyType>;
 
-export interface _FootnoteType {
+export interface _FootnoteType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     borderBottom: string;
@@ -2079,12 +1653,11 @@ export interface _FootnoteType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     textAlign: text_align_Type;
     textAlignLast: text_align_last_Type;
@@ -2098,8 +1671,6 @@ export interface _FootnoteType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    footnoteBody: FootnoteBodyType;
-    inline: InlineType;
 }
 export type FootnoteType = Partial<_FootnoteType>;
 
@@ -2124,66 +1695,28 @@ export type indicate_destination_Type = ("true" | "false");
 export type inherit_Type = "inherit";
 
 /** Inheritable */
-export interface _InitialPropertySetType {
+export interface _InitialPropertySetType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -2240,31 +1773,7 @@ export interface _InitialPropertySetType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -2280,12 +1789,11 @@ export interface _InitialPropertySetType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     speak: string;
     speakHeader: string;
     speakNumeral: speak_numeral_Type;
@@ -2318,72 +1826,34 @@ export type inline_progression_dimension_maximum_Type = string;
 export type inline_progression_dimension_optimum_Type = string;
 
 /** Inheritable */
-export interface _InlineContainerType {
+export interface _InlineContainerType extends BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -2450,31 +1920,7 @@ export interface _InlineContainerType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     position: position_Type;
     provisionalDistanceBetweenStarts: string;
@@ -2515,89 +1961,39 @@ export interface _InlineContainerType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    marker: MarkerType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type InlineContainerType = Partial<_InlineContainerType>;
 
 /** Inheritable */
-export interface _InlineType {
+export interface _InlineType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -2666,31 +2062,7 @@ export interface _InlineType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -2706,12 +2078,11 @@ export interface _InlineType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -2749,100 +2120,39 @@ export interface _InlineType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    float?: FloatType[];
-    footnote?: FootnoteType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    marker?: MarkerType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
-    wrapper?: WrapperType[];
 }
 export type InlineType = Partial<_InlineType>;
 
 /** Inheritable */
-export interface _InstreamForeignObjectType {
+export interface _InstreamForeignObjectType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -2916,31 +2226,7 @@ export interface _InstreamForeignObjectType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -2956,14 +2242,13 @@ export interface _InstreamForeignObjectType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scaling: scaling_Type;
     scalingMethod: scaling_method_Type;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -3104,8 +2389,6 @@ export interface _LayoutMasterSetType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    pageSequenceMaster: PageSequenceMasterType[];
-    simplePageMaster: SimplePageMasterType[];
 }
 export type LayoutMasterSetType = Partial<_LayoutMasterSetType>;
 
@@ -3118,69 +2401,31 @@ export type leader_pattern_Type = ("space" | "rule" | "dots" | "use-content" | "
 export type leader_pattern_width_Type = string;
 
 /** Inheritable */
-export interface _LeaderType {
+export interface _LeaderType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -3244,31 +2489,7 @@ export interface _LeaderType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -3284,12 +2505,11 @@ export interface _LeaderType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -3328,21 +2548,6 @@ export interface _LeaderType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    wrapper?: WrapperType[];
 }
 export type LeaderType = Partial<_LeaderType>;
 
@@ -3380,67 +2585,30 @@ export type line_stacking_strategy_Type = ("line-height" | "font-height" | "max-
 export type linefeed_treatment_Type = ("ignore" | "preserve" | "treat-as-space" | "treat-as-zero-width-space" | "inherit");
 
 /** Inheritable */
-export interface _ListBlockType {
+export interface _ListBlockType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
+
     backgroundPosition: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     breakAfter: breaks_Type;
@@ -3505,31 +2673,7 @@ export interface _ListBlockType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakAfter: page_break_after_Type;
     pageBreakBefore: page_break_after_Type;
     pageBreakInside: page_break_inside_Type;
@@ -3547,12 +2691,11 @@ export interface _ListBlockType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceAfter: string;
     spaceAfterConditionality: conditionality_Type;
     spaceAfterMaximum: string;
@@ -3587,12 +2730,11 @@ export interface _ListBlockType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    listItem: ListItemType[];
 }
 export type ListBlockType = Partial<_ListBlockType>;
 
 /** Inheritable */
-export interface _ListItemBodyType {
+export interface _ListItemBodyType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     backgroundPosition: string;
@@ -3663,12 +2805,11 @@ export interface _ListItemBodyType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     textAlign: text_align_Type;
     textAlignLast: text_align_last_Type;
@@ -3682,23 +2823,11 @@ export interface _ListItemBodyType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    marker: MarkerType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type ListItemBodyType = Partial<_ListItemBodyType>;
 
 /** Inheritable */
-export interface _ListItemLabelType {
+export interface _ListItemLabelType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     backgroundPosition: string;
@@ -3769,12 +2898,11 @@ export interface _ListItemLabelType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     textAlign: text_align_Type;
     textAlignLast: text_align_last_Type;
@@ -3788,83 +2916,34 @@ export interface _ListItemLabelType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    marker: MarkerType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type ListItemLabelType = Partial<_ListItemLabelType>;
 
 /** Inheritable */
-export interface _ListItemType {
+export interface _ListItemType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
+
     backgroundPosition: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     breakAfter: breaks_Type;
@@ -3929,31 +3008,7 @@ export interface _ListItemType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakAfter: page_break_after_Type;
     pageBreakBefore: page_break_after_Type;
     pageBreakInside: page_break_inside_Type;
@@ -3971,12 +3026,11 @@ export interface _ListItemType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceAfter: string;
     spaceAfterConditionality: conditionality_Type;
     spaceAfterMaximum: string;
@@ -4103,22 +3157,6 @@ export interface _MarkerType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
 }
 export type MarkerType = Partial<_MarkerType>;
 
@@ -4129,7 +3167,7 @@ export type measurement_Type = ("px" | "pt" | "mm" | "in" | "cm" | "em");
 
 export type media_usage_Type = ("auto" | "paginate" | "bounded-in-one-dimension" | "unbounded");
 
-export interface _MultiCaseType {
+export interface _MultiCaseType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     borderBottom: string;
@@ -4199,12 +3237,11 @@ export interface _MultiCaseType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     startingState: starting_state_Type;
     textAlign: text_align_Type;
@@ -4219,32 +3256,10 @@ export interface _MultiCaseType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    float?: FloatType[];
-    footnote?: FootnoteType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
-    wrapper?: WrapperType[];
 }
 export type MultiCaseType = Partial<_MultiCaseType>;
 
-export interface _MultiPropertiesType {
+export interface _MultiPropertiesType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     borderBottom: string;
@@ -4312,12 +3327,11 @@ export interface _MultiPropertiesType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     textAlign: text_align_Type;
     textAlignLast: text_align_last_Type;
@@ -4331,7 +3345,6 @@ export interface _MultiPropertiesType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    multiPropertySet: MultiPropertySetType[];
     wrapper: WrapperType;
 }
 export type MultiPropertiesType = Partial<_MultiPropertiesType>;
@@ -4426,7 +3439,7 @@ export interface _MultiPropertySetType {
 export type MultiPropertySetType = Partial<_MultiPropertySetType>;
 
 /** Inheritable */
-export interface _MultiSwitchType {
+export interface _MultiSwitchType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     borderBottom: string;
@@ -4494,12 +3507,11 @@ export interface _MultiSwitchType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     textAlign: text_align_Type;
     textAlignLast: text_align_last_Type;
@@ -4517,7 +3529,7 @@ export interface _MultiSwitchType {
 }
 export type MultiSwitchType = Partial<_MultiSwitchType>;
 
-export interface _MultiToggleType {
+export interface _MultiToggleType extends AccessibilityProperties {
     autoRestore: auto_restore_Type;
     background: string;
     borderBottom: string;
@@ -4585,12 +3597,11 @@ export interface _MultiToggleType {
     provisionalLabelSeparation: string;
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     startIndent: string;
     switchTo: string;
     textAlign: text_align_Type;
@@ -4606,28 +3617,6 @@ export interface _MultiToggleType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    float?: FloatType[];
-    footnote?: FootnoteType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
-    wrapper?: WrapperType[];
 }
 export type MultiToggleType = Partial<_MultiToggleType>;
 
@@ -4666,69 +3655,31 @@ export type page_break_inside_Type = ("auto" | "avoid" | "inherit");
 export type page_position_Type = ("first" | "last" | "rest" | "any" | "inherit");
 
 /** Inheritable */
-export interface _PageNumberCitationType {
+export interface _PageNumberCitationType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -4792,31 +3743,7 @@ export interface _PageNumberCitationType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -4833,12 +3760,11 @@ export interface _PageNumberCitationType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -4882,69 +3808,31 @@ export interface _PageNumberCitationType {
 export type PageNumberCitationType = Partial<_PageNumberCitationType>;
 
 /** Inheritable */
-export interface _PageNumberType {
+export interface _PageNumberType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     alignmentAdjust: string;
     alignmentBaseline: string;
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     baselineShift: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -5008,31 +3896,7 @@ export interface _PageNumberType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -5048,12 +3912,11 @@ export interface _PageNumberType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -5181,9 +4044,6 @@ export interface _PageSequenceMasterType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    repeatablePageMasterAlternatives: RepeatablePageMasterAlternativesType[];
-    repeatablePageMasterReference: RepeatablePageMasterReferenceType[];
-    singlePageMasterReference: SinglePageMasterReferenceType[];
 }
 export type PageSequenceMasterType = Partial<_PageSequenceMasterType>;
 
@@ -5280,9 +4140,6 @@ export interface _PageSequenceType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    flow: FlowType;
-    staticContent?: StaticContentType[];
-    title?: TitleType;
 }
 export type PageSequenceType = Partial<_PageSequenceType>;
 
@@ -5305,65 +4162,27 @@ export type provisional_distance_between_starts_Type = string;
 export type provisional_label_separation_Type = string;
 
 /** Inheritable */
-export interface _RegionAfterType {
+export interface _RegionAfterType extends BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     captionSide: caption_side_Type;
     clip: string;
@@ -5416,31 +4235,7 @@ export interface _RegionAfterType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     position: position_Type;
     precedence: precedence_Type;
@@ -5470,65 +4265,27 @@ export interface _RegionAfterType {
 export type RegionAfterType = Partial<_RegionAfterType>;
 
 /** Inheritable */
-export interface _RegionBeforeType {
+export interface _RegionBeforeType  extends BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     captionSide: caption_side_Type;
     clip: string;
@@ -5581,31 +4338,7 @@ export interface _RegionBeforeType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     position: position_Type;
     precedence: precedence_Type;
@@ -5635,65 +4368,27 @@ export interface _RegionBeforeType {
 export type RegionBeforeType = Partial<_RegionBeforeType>;
 
 /** Inheritable */
-export interface _RegionBodyType {
+export interface _RegionBodyType extends BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     captionSide: caption_side_Type;
     clip: string;
@@ -5751,31 +4446,7 @@ export interface _RegionBodyType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     position: position_Type;
     provisionalDistanceBetweenStarts: string;
@@ -5816,65 +4487,27 @@ export interface _RegionBodyType {
 export type RegionBodyType = Partial<_RegionBodyType>;
 
 /** Inheritable */
-export interface _RegionEndType {
+export interface _RegionEndType extends BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     captionSide: caption_side_Type;
     clip: string;
@@ -5927,31 +4560,7 @@ export interface _RegionEndType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     position: position_Type;
     precedence: precedence_Type;
@@ -5981,65 +4590,27 @@ export interface _RegionEndType {
 export type RegionEndType = Partial<_RegionEndType>;
 
 /** Inheritable */
-export interface _RegionStartType {
+export interface _RegionStartType extends BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     captionSide: caption_side_Type;
     clip: string;
@@ -6092,31 +4663,7 @@ export interface _RegionStartType {
     minWidth: string;
     orphans: string;
     overflow: overflow_Type;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     position: position_Type;
     precedence: precedence_Type;
@@ -6239,7 +4786,6 @@ export interface _RepeatablePageMasterAlternativesType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    conditionalPageMasterReference: ConditionalPageMasterReferenceType[];
 }
 export type RepeatablePageMasterAlternativesType = Partial<_RepeatablePageMasterAlternativesType>;
 
@@ -6513,9 +5059,6 @@ export interface _RootType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    declarations?: DeclarationsType;
-    layoutMasterSet: LayoutMasterSetType;
-    pageSequence: PageSequenceType[];
 }
 export type RootType = Partial<_RootType>;
 
@@ -6634,11 +5177,6 @@ export interface _SimplePageMasterType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    regionAfter?: RegionAfterType;
-    regionBefore?: RegionBeforeType;
-    regionBody: RegionBodyType;
-    regionEnd?: RegionEndType;
-    regionStart?: RegionStartType;
 }
 export type SimplePageMasterType = Partial<_SimplePageMasterType>;
 
@@ -6874,17 +5412,6 @@ export interface _StaticContentType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type StaticContentType = Partial<_StaticContentType>;
 
@@ -6897,66 +5424,28 @@ export type table_omit_footer_at_break_Type = ("true" | "false");
 export type table_omit_header_at_break_Type = ("true" | "false");
 
 /** Inheritable */
-export interface _TableAndCaptionType {
+export interface _TableAndCaptionType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     breakAfter: breaks_Type;
@@ -7021,31 +5510,7 @@ export interface _TableAndCaptionType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakAfter: page_break_after_Type;
     pageBreakBefore: page_break_after_Type;
     pageBreakInside: page_break_inside_Type;
@@ -7063,12 +5528,11 @@ export interface _TableAndCaptionType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceAfter: string;
     spaceAfterConditionality: conditionality_Type;
     spaceAfterMaximum: string;
@@ -7103,76 +5567,29 @@ export interface _TableAndCaptionType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    table: TableType;
-    tableCaption?: TableCaptionType;
 }
 export type TableAndCaptionType = Partial<_TableAndCaptionType>;
 
 /** Inheritable */
-export interface _TableBodyType {
+export interface _TableBodyType extends AccessibilityProperties, BorderProperties, BackgroundProperties, BorderPrecedenceProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterPrecedence: precedence_Type;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforePrecedence: precedence_Type;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndPrecedence: precedence_Type;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartPrecedence: precedence_Type;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -7244,12 +5661,11 @@ export interface _TableBodyType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     speak: string;
     speakHeader: string;
     speakNumeral: speak_numeral_Type;
@@ -7272,76 +5688,36 @@ export interface _TableBodyType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    tableCell: TableCellType[];
-    tableRow: TableRowType[];
 }
 export type TableBodyType = Partial<_TableBodyType>;
 
 /** Inheritable */
-export interface _TableCaptionType {
+export interface _TableCaptionType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -7403,31 +5779,7 @@ export interface _TableCaptionType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -7443,12 +5795,11 @@ export interface _TableCaptionType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     speak: string;
     speakHeader: string;
     speakNumeral: speak_numeral_Type;
@@ -7472,90 +5823,49 @@ export interface _TableCaptionType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    marker: MarkerType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type TableCaptionType = Partial<_TableCaptionType>;
 
 /** Inheritable */
-export interface _TableCellType {
+export interface _TableCellType extends AccessibilityProperties, BorderPrecedenceProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterPrecedence: precedence_Type;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
+
     borderBeforeColor: string;
-    borderBeforePrecedence: precedence_Type;
     borderBeforeStyle: border_style_Type;
     borderBeforeWidth: string;
     borderBeforeWidthConditionality: conditionality_Type;
     borderBeforeWidthLength: string;
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
     borderEndColor: string;
-    borderEndPrecedence: precedence_Type;
     borderEndStyle: border_style_Type;
     borderEndWidth: string;
     borderEndWidthConditionality: conditionality_Type;
     borderEndWidthLength: string;
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
     borderStartColor: string;
-    borderStartPrecedence: precedence_Type;
     borderStartStyle: border_style_Type;
     borderStartWidth: string;
     borderStartWidthConditionality: conditionality_Type;
     borderStartWidthLength: string;
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -7621,31 +5931,7 @@ export interface _TableCellType {
     numberColumnsSpanned: string;
     numberRowsSpanned: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -7661,12 +5947,11 @@ export interface _TableCellType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     speak: string;
     speakHeader: string;
     speakNumeral: speak_numeral_Type;
@@ -7692,85 +5977,44 @@ export interface _TableCellType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    block: BlockType[];
-    blockContainer: BlockContainerType[];
-    float: FloatType[];
-    footnote: FootnoteType[];
-    listBlock: ListBlockType[];
-    marker: MarkerType[];
-    multiProperties: MultiPropertiesType[];
-    multiSwitch: MultiSwitchType[];
-    retrieveMarker: RetrieveMarkerType[];
-    table: TableType[];
-    tableAndCaption: TableAndCaptionType[];
-    wrapper: WrapperType[];
 }
 export type TableCellType = Partial<_TableCellType>;
 
 /** Inheritable */
-export interface _TableColumnType {
+export interface _TableColumnType extends BorderProperties, BackgroundProperties, BorderPrecedenceProperties {
     autoRestore: auto_restore_Type;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterPrecedence: precedence_Type;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
+
     borderBeforeColor: string;
-    borderBeforePrecedence: precedence_Type;
     borderBeforeStyle: border_style_Type;
     borderBeforeWidth: string;
     borderBeforeWidthConditionality: conditionality_Type;
     borderBeforeWidthLength: string;
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
     borderEndColor: string;
-    borderEndPrecedence: precedence_Type;
     borderEndStyle: border_style_Type;
     borderEndWidth: string;
     borderEndWidthConditionality: conditionality_Type;
     borderEndWidthLength: string;
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
     borderStartColor: string;
-    borderStartPrecedence: precedence_Type;
     borderStartStyle: border_style_Type;
     borderStartWidth: string;
     borderStartWidthConditionality: conditionality_Type;
     borderStartWidthLength: string;
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     captionSide: caption_side_Type;
     color: string;
@@ -7851,70 +6095,41 @@ export interface _TableColumnType {
 export type TableColumnType = Partial<_TableColumnType>;
 
 /** Inheritable */
-export interface _TableFooterType {
+export interface _TableFooterType extends AccessibilityProperties, BorderProperties, BackgroundProperties, BorderPrecedenceProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterPrecedence: precedence_Type;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
+
     borderBeforeColor: string;
-    borderBeforePrecedence: precedence_Type;
     borderBeforeStyle: border_style_Type;
     borderBeforeWidth: string;
     borderBeforeWidthConditionality: conditionality_Type;
     borderBeforeWidthLength: string;
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
     borderEndColor: string;
-    borderEndPrecedence: precedence_Type;
     borderEndStyle: border_style_Type;
     borderEndWidth: string;
     borderEndWidthConditionality: conditionality_Type;
     borderEndWidthLength: string;
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
     borderStartColor: string;
-    borderStartPrecedence: precedence_Type;
     borderStartStyle: border_style_Type;
     borderStartWidth: string;
     borderStartWidthConditionality: conditionality_Type;
     borderStartWidthLength: string;
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -7986,12 +6201,11 @@ export interface _TableFooterType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     speak: string;
     speakHeader: string;
     speakNumeral: speak_numeral_Type;
@@ -8014,76 +6228,45 @@ export interface _TableFooterType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    tableCell: TableCellType[];
-    tableRow: TableRowType[];
 }
 export type TableFooterType = Partial<_TableFooterType>;
 
 /** Inheritable */
-export interface _TableHeaderType {
+export interface _TableHeaderType extends AccessibilityProperties, BorderProperties, BackgroundProperties, BorderPrecedenceProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterPrecedence: precedence_Type;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
+
     borderBeforeColor: string;
-    borderBeforePrecedence: precedence_Type;
     borderBeforeStyle: border_style_Type;
     borderBeforeWidth: string;
     borderBeforeWidthConditionality: conditionality_Type;
     borderBeforeWidthLength: string;
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
     borderEndColor: string;
-    borderEndPrecedence: precedence_Type;
     borderEndStyle: border_style_Type;
     borderEndWidth: string;
     borderEndWidthConditionality: conditionality_Type;
     borderEndWidthLength: string;
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
     borderStartColor: string;
-    borderStartPrecedence: precedence_Type;
     borderStartStyle: border_style_Type;
     borderStartWidth: string;
     borderStartWidthConditionality: conditionality_Type;
     borderStartWidthLength: string;
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     captionSide: caption_side_Type;
@@ -8155,12 +6338,11 @@ export interface _TableHeaderType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     speak: string;
     speakHeader: string;
     speakNumeral: speak_numeral_Type;
@@ -8183,80 +6365,49 @@ export interface _TableHeaderType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    tableCell: TableCellType[];
-    tableRow: TableRowType[];
 }
 export type TableHeaderType = Partial<_TableHeaderType>;
 
 /** Inheritable */
-export interface _TableRowType {
+export interface _TableRowType extends AccessibilityProperties, BorderProperties, BackgroundProperties, BorderPrecedenceProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterPrecedence: precedence_Type;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
+
     borderBeforeColor: string;
-    borderBeforePrecedence: precedence_Type;
     borderBeforeStyle: border_style_Type;
     borderBeforeWidth: string;
     borderBeforeWidthConditionality: conditionality_Type;
     borderBeforeWidthLength: string;
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
     borderEndColor: string;
-    borderEndPrecedence: precedence_Type;
     borderEndStyle: border_style_Type;
     borderEndWidth: string;
     borderEndWidthConditionality: conditionality_Type;
     borderEndWidthLength: string;
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
     borderStartColor: string;
-    borderStartPrecedence: precedence_Type;
     borderStartStyle: border_style_Type;
     borderStartWidth: string;
     borderStartWidthConditionality: conditionality_Type;
     borderStartWidthLength: string;
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     breakAfter: breaks_Type;
@@ -8335,12 +6486,11 @@ export interface _TableRowType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     speak: string;
     speakHeader: string;
     speakNumeral: speak_numeral_Type;
@@ -8363,79 +6513,49 @@ export interface _TableRowType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    tableCell: TableCellType[];
 }
 export type TableRowType = Partial<_TableRowType>;
 
 /** Inheritable */
-export interface _TableType {
+export interface _TableType extends AccessibilityProperties, BorderPrecedenceProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     blockProgressionDimension: string;
     blockProgressionDimensionMaximum: string;
     blockProgressionDimensionMinimum: string;
     blockProgressionDimensionOptimum: string;
     border: string;
-    borderAfterColor: string;
-    borderAfterPrecedence: precedence_Type;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
+
     borderBeforeColor: string;
-    borderBeforePrecedence: precedence_Type;
     borderBeforeStyle: border_style_Type;
     borderBeforeWidth: string;
     borderBeforeWidthConditionality: conditionality_Type;
     borderBeforeWidthLength: string;
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
     borderEndColor: string;
-    borderEndPrecedence: precedence_Type;
     borderEndStyle: border_style_Type;
     borderEndWidth: string;
     borderEndWidthConditionality: conditionality_Type;
     borderEndWidthLength: string;
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
     borderStartColor: string;
-    borderStartPrecedence: precedence_Type;
     borderStartStyle: border_style_Type;
     borderStartWidth: string;
     borderStartWidthConditionality: conditionality_Type;
     borderStartWidthLength: string;
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     bottom: string;
     breakAfter: breaks_Type;
@@ -8505,31 +6625,7 @@ export interface _TableType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakAfter: page_break_after_Type;
     pageBreakBefore: page_break_after_Type;
     pageBreakInside: page_break_inside_Type;
@@ -8547,12 +6643,11 @@ export interface _TableType {
     relativePosition: relative_position_Type;
     richness: string;
     right: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceAfter: string;
     spaceAfterConditionality: conditionality_Type;
     spaceAfterMaximum: string;
@@ -8591,10 +6686,6 @@ export interface _TableType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    tableBody: TableBodyType[];
-    tableColumn?: TableColumnType[];
-    tableFooter?: TableFooterType;
-    tableHeader?: TableHeaderType;
 }
 export type TableType = Partial<_TableType>;
 
@@ -8614,66 +6705,28 @@ export type text_shadow_Type = string;
 export type text_transform_Type = ("capitalize" | "uppercase" | "lowercase" | "none" | "inherit");
 
 /** Inheritable */
-export interface _TitleType {
+export interface _TitleType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
     autoRestore: auto_restore_Type;
     azimuth: string;
     background: string;
-    backgroundAttachment: background_attachment_Type;
-    backgroundColor: string;
-    backgroundImage: string;
-    backgroundPositionHorizontal: string;
-    backgroundPositionVertical: string;
-    backgroundRepeat: background_repeat_Type;
+
     border: string;
-    borderAfterColor: string;
-    borderAfterStyle: border_style_Type;
-    borderAfterWidth: string;
-    borderAfterWidthConditionality: conditionality_Type;
-    borderAfterWidthLength: string;
-    borderBeforeColor: string;
-    borderBeforeStyle: border_style_Type;
-    borderBeforeWidth: string;
-    borderBeforeWidthConditionality: conditionality_Type;
-    borderBeforeWidthLength: string;
+
     borderBottom: string;
-    borderBottomColor: string;
-    borderBottomStyle: border_style_Type;
-    borderBottomWidth: string;
-    borderBottomWidthConditionality: conditionality_Type;
-    borderBottomWidthLength: string;
+
     borderCollapse: border_collapse_Type;
     borderColor: border_color_Type;
-    borderEndColor: string;
-    borderEndStyle: border_style_Type;
-    borderEndWidth: string;
-    borderEndWidthConditionality: conditionality_Type;
-    borderEndWidthLength: string;
+
     borderLeft: string;
-    borderLeftColor: string;
-    borderLeftStyle: border_style_Type;
-    borderLeftWidth: string;
-    borderLeftWidthConditionality: conditionality_Type;
-    borderLeftWidthLength: string;
+
     borderRight: string;
-    borderRightColor: string;
-    borderRightStyle: border_style_Type;
-    borderRightWidth: string;
-    borderRightWidthConditionality: conditionality_Type;
-    borderRightWidthLength: string;
+
     borderSeparation: length_bp_ip_direction_Type;
     borderSpacing: string;
-    borderStartColor: string;
-    borderStartStyle: border_style_Type;
-    borderStartWidth: string;
-    borderStartWidthConditionality: conditionality_Type;
-    borderStartWidthLength: string;
+
     borderStyle: border_multi_style_Type;
     borderTop: string;
-    borderTopColor: string;
-    borderTopStyle: border_style_Type;
-    borderTopWidth: string;
-    borderTopWidthConditionality: conditionality_Type;
-    borderTopWidthLength: string;
+
     borderWidth: border_margin_width_Type;
     captionSide: caption_side_Type;
     color: string;
@@ -8731,31 +6784,7 @@ export interface _TitleType {
     minHeight: string;
     minWidth: string;
     orphans: string;
-    padding: string;
-    paddingAfter: string;
-    paddingAfterConditionality: conditionality_Type;
-    paddingAfterLength: string;
-    paddingBefore: string;
-    paddingBeforeConditionality: conditionality_Type;
-    paddingBeforeLength: string;
-    paddingBottom: string;
-    paddingBottomConditionality: conditionality_Type;
-    paddingBottomLength: string;
-    paddingEnd: string;
-    paddingEndConditionality: conditionality_Type;
-    paddingEndLength: string;
-    paddingLeft: string;
-    paddingLeftConditionality: conditionality_Type;
-    paddingLeftLength: string;
-    paddingRight: string;
-    paddingRightConditionality: conditionality_Type;
-    paddingRightLength: string;
-    paddingStart: string;
-    paddingStartConditionality: conditionality_Type;
-    paddingStartLength: string;
-    paddingTop: string;
-    paddingTopConditionality: conditionality_Type;
-    paddingTopLength: string;
+
     pageBreakInside: page_break_inside_Type;
     pause: string;
     pauseAfter: string;
@@ -8769,12 +6798,11 @@ export interface _TitleType {
     referenceOrientation: orientation_Type;
     relativeAlign: relative_align_Type;
     richness: string;
-    role: string;
+
     ruleStyle: rule_style_Type;
     ruleThickness: string;
     scoreSpaces: score_spaces_Type;
     script: string;
-    sourceDocument: string;
     spaceEnd: string;
     spaceEndConditionality: conditionality_Type;
     spaceEndMaximum: string;
@@ -8808,21 +6836,6 @@ export interface _TitleType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    wrapper?: WrapperType[];
 }
 export type TitleType = Partial<_TitleType>;
 
@@ -8943,29 +6956,6 @@ export interface _WrapperType {
     wordSpacing: string;
     wrapOption: wrap_option_Type;
     writingMode: writing_mode_Type;
-    basicLink?: BasicLinkType[];
-    bidiOverride?: BidiOverrideType[];
-    block?: BlockType[];
-    blockContainer?: BlockContainerType[];
-    character?: CharacterType[];
-    externalGraphic?: ExternalGraphicType[];
-    float?: FloatType[];
-    footnote?: FootnoteType[];
-    inline?: InlineType[];
-    inlineContainer?: InlineContainerType[];
-    instreamForeignObject?: InstreamForeignObjectType[];
-    leader?: LeaderType[];
-    listBlock?: ListBlockType[];
-    marker?: MarkerType[];
-    multiProperties?: MultiPropertiesType[];
-    multiSwitch?: MultiSwitchType[];
-    multiToggle?: MultiToggleType[];
-    pageNumber?: PageNumberType[];
-    pageNumberCitation?: PageNumberCitationType[];
-    retrieveMarker?: RetrieveMarkerType[];
-    table?: TableType[];
-    tableAndCaption?: TableAndCaptionType[];
-    wrapper?: WrapperType[];
 }
 export type WrapperType = Partial<_WrapperType>;
 
