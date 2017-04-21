@@ -2,8 +2,6 @@
 import * as XSLFO from './index';
 import * as uuid from 'uuid';
 
-let foo = <bar />;
-
 export class Report extends XSLFO.Component<{}> {
     render() {
         let pageSequences = [];

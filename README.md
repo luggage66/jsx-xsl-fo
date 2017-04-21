@@ -1,4 +1,4 @@
-A JSX to XSL-FO templating tool with react-like API.
+A JSX to XSL-FO templating tool with react-like API w/ TypeScript typess
 
 [![Join the chat at https://gitter.im/luggage66/jsx-xsl-fo](https://badges.gitter.im/luggage66/jsx-xsl-fo.svg)](https://gitter.im/luggage66/jsx-xsl-fo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -6,7 +6,7 @@ This library generates xsl-fo output from a react-like API. It may turn into a r
 
 ```js
 /** @jsx XSLFO.createElement */
-import XSLFO, { Component } from 'jsx-xsl-fo';
+import XSLFO, { XSLFO } from 'jsx-xsl-fo';
 
 // create an element
 var element = XLSFO.createElement('block', { "border-top": "0.5pt solid black" }, "Hello World.");
@@ -20,7 +20,7 @@ function Greeting(props) {
 }
 
 // or as an ES6 class (here we use props.children)
-class GoodBye {
+class GoodBye extends Component {
     render() {
         return <block>
             So long, <inline font-weight="bold">{this.props.children}</inline>
@@ -126,4 +126,3 @@ If you need to embed some other xml (e.g. SVG) use `dangerouslySetInnerXML`.
 
 * Medium Term
   * More helpful Components for common reporting tasks
-* Should I go toward integrating with react, or going standalone and having more helpers for generating PDFs (like dealing for FOP or other xsl-fo renders)?

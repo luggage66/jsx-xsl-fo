@@ -1,5 +1,6 @@
 import { XlsfoComponent } from './xslfoComponent';
 import { TagProps, XslfoElement } from './elements';
+import { IntrinsicFoElements } from './fopTypes';
 
 export {
     createElement,
@@ -9,6 +10,10 @@ export {
     processElement,
     cloneElement
 } from './implementation';
+
+export {
+    BlockType
+} from './fopTypes';
 
 export {
     XlsfoComponent as Component,
@@ -32,8 +37,9 @@ declare global {
         }
         interface IntrinsicClassAttributes<T> {}
 
-        interface IntrinsicElements {
-            [elemName: string]: TagProps<any> & AllowAllProps;
-        }
+        interface IntrinsicElements extends IntrinsicFoElements {}
+        // interface IntrinsicElements {
+        //     [name: string]: any;
+        // }
     }
 }
