@@ -27,7 +27,8 @@ import {
     KeepProperties,
     LineHeightProperties,
     HyphenationProperties,
-    Span
+    Span,
+    DominantBaseline
 } from './fopTypes2';
 
 // Source files:
@@ -228,120 +229,11 @@ export interface _BasicLinkType extends AccessibilityProperties, BorderPaddingAn
 export type BasicLinkType = Partial<_BasicLinkType>;
 
 /** Inheritable */
-export interface _BidiOverrideType {
-    
-    azimuth: string;
-    background: string;
-    borderBottom: string;
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-    borderLeft: string;
-    borderRight: string;
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    color: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
-    id: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textIndent: string;
-    textTransform: text_transform_Type;
-    top: string;
-    unicodeBidi: unicode_bidi_Type;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+export interface BidiOverrideType extends AuralProperties, FontProperties, RelativePositionProperties, InheritableProperties {
+    id?: string;
+    unicode_bidi_Type?: UnicodeBidi;
+    verticalAlign?: string;
 }
-export type BidiOverrideType = Partial<_BidiOverrideType>;
 
 export type blank_or_not_blank_Type = ("blank" | "not-blank" | "any" | "inherit");
 
@@ -429,159 +321,30 @@ export type caption_side_Type = ("before" | "after" | "start" | "end" | "top" | 
 
 export type character_Type = string;
 
-/** Inheritable */
-export interface _CharacterType extends BorderPaddingAndBackgroundProperties {
-    alignmentAdjust: string;
-    alignmentBaseline: string;
-    
-    azimuth: string;
-    background: string;
+export interface CharacterType
+    extends AuralProperties,
+    BorderPaddingAndBackgroundProperties,
+    FontProperties,
+    HyphenationProperties,
+    MarginPropertiesInline,
+    RelativePositionProperties,
+    TextOneProperties,
+    InheritableProperties {
 
-    baselineShift: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    character: string;
-    color: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
-    id: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    keepWithNext: string;
-    keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    suppressAtLineBreak: suppress_at_line_break_Type;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textAltitude: string;
-    textDecoration: text_decoration_Type;
-    textDepth: string;
-    textIndent: string;
-    textShadow: string;
-    textTransform: text_transform_Type;
-    top: string;
-    treatAsWordSpace: treat_as_word_space_Type;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+    id?: string;
+    alignmentAdjust?: string;
+    alignmentBaseline?: string;
+    baselineShift?: string;
+    character?: string;
+    treatAsWordSpace?: treat_as_word_space_Type;
+    dominantBaseline?: DominantBaseline;
+    keepWithNext?: string;
+    keepWithPrevious?: string;
+    suppressAtLineBreak?: suppress_at_line_break_Type;
+    textDecoration?: text_decoration_Type;
+    textShadow?: string;
+    verticalAlign?: string;
 }
-export type CharacterType = Partial<_CharacterType>;
 
 export type clear_Type = ("start" | "end" | "left" | "right" | "both" | "none" | "inherit");
 
@@ -615,172 +378,37 @@ export interface ConditionalPageMasterReferenceType extends InheritablePropertie
 
 export interface DeclarationsType extends InheritableProperties {}
 
+export interface ExternalGraphicType extends InstreamForeignObjectType {
+    src: string;
+}
 
-/** Inheritable */
-export interface _ExternalGraphicType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
+export interface InstreamForeignObjectType
+    extends AccessibilityProperties,
+    AuralProperties,
+    BorderPaddingAndBackgroundProperties,
+    MarginPropertiesInline,
+    RelativePositionProperties,
+    ProgressionProperties,
+    ClipProperties,
+    InheritableProperties {
+
     alignmentAdjust: string;
     alignmentBaseline: string;
-    
-    azimuth: string;
-    background: string;
-
     baselineShift: string;
-    blockProgressionDimension: string;
-    blockProgressionDimensionMaximum: string;
-    blockProgressionDimensionMinimum: string;
-    blockProgressionDimensionOptimum: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    clip: string;
-    color: string;
     contentHeight: string;
     contentType: string;
     contentWidth: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
+    dominantBaseline: DominantBaseline;
     height: string;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
     id: string;
-    inlineProgressionDimension: string;
-    inlineProgressionDimensionMaximum: string;
-    inlineProgressionDimensionMinimum: string;
-    inlineProgressionDimensionOptimum: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
     keepWithNext: string;
     keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
     overflow: overflow_Type;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
     scaling: scaling_Type;
     scalingMethod: scaling_method_Type;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    src: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textIndent: string;
-    textTransform: text_transform_Type;
-    top: string;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
     width: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+    verticalAlign: string;
 }
-export type ExternalGraphicType = Partial<_ExternalGraphicType>;
 
 /** A string of characters identifying a font. */
 export type family_name_Type = string;
@@ -1090,753 +718,89 @@ export type indicate_destination_Type = ("true" | "false");
 
 export type inherit_Type = "inherit";
 
-/** Inheritable */
-export interface _InitialPropertySetType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
-    
-    azimuth: string;
-    background: string;
+export interface InitialPropertySetType
+    extends AccessibilityProperties,
+    AuralProperties,
+    BorderPaddingAndBackgroundProperties,
+    FontProperties,
+    RelativePositionProperties,
+    InheritableProperties {
 
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    color: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
-    id: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textDecoration: text_decoration_Type;
-    textIndent: string;
-    textShadow: string;
-    textTransform: text_transform_Type;
-    top: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+    id?: string;
+    textDecoration?: text_decoration_Type;
+    textShadow?: string;
 }
-export type InitialPropertySetType = Partial<_InitialPropertySetType>;
 
 export type inline_progression_dimension_maximum_Type = string;
 
 export type inline_progression_dimension_optimum_Type = string;
 
-/** Inheritable */
-export interface _InlineContainerType extends BorderPaddingAndBackgroundProperties {
+export interface InlineContainerType
+    extends BorderPaddingAndBackgroundProperties,
+    MarginPropertiesInline,
+    RelativePositionProperties,
+    ProgressionProperties,
+    ClipProperties,
+    KeepProperties,
+    ReferenceProperties,
+    InheritableProperties {
+
     alignmentAdjust: string;
     alignmentBaseline: string;
-    
-    background: string;
-
     baselineShift: string;
-    blockProgressionDimension: string;
-    blockProgressionDimensionMaximum: string;
-    blockProgressionDimensionMinimum: string;
-    blockProgressionDimensionOptimum: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    clip: string;
-    color: string;
-    country: country_Type;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
+    dominantBaseline: DominantBaseline;
     height: string;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
     id: string;
-    inlineProgressionDimension: string;
-    inlineProgressionDimensionMaximum: string;
-    inlineProgressionDimensionMinimum: string;
-    inlineProgressionDimensionOptimum: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    keepWithNext: string;
-    keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
     overflow: overflow_Type;
-
-    pageBreakInside: page_break_inside_Type;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    right: string;
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    startIndent: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textIndent: string;
-    textTransform: text_transform_Type;
-    top: string;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
     width: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+    verticalAlign: string;
 }
-export type InlineContainerType = Partial<_InlineContainerType>;
 
-/** Inheritable */
-export interface _InlineType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
+export interface InlineType
+    extends AccessibilityProperties,
+    AuralProperties,
+    BorderPaddingAndBackgroundProperties,
+    FontProperties,
+    MarginPropertiesInline,
+    RelativePositionProperties,
+    ProgressionProperties,
+    KeepProperties,
+    InheritableProperties {
+
     alignmentAdjust: string;
     alignmentBaseline: string;
-    
-    azimuth: string;
-    background: string;
-
     baselineShift: string;
-    blockProgressionDimension: string;
-    blockProgressionDimensionMaximum: string;
-    blockProgressionDimensionMinimum: string;
-    blockProgressionDimensionOptimum: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    color: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
+    dominantBaseline: DominantBaseline;
     height: string;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
     id: string;
-    inlineProgressionDimension: string;
-    inlineProgressionDimensionMaximum: string;
-    inlineProgressionDimensionMinimum: string;
-    inlineProgressionDimensionOptimum: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    keepWithNext: string;
-    keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
     textDecoration: text_decoration_Type;
-    textIndent: string;
-    textTransform: text_transform_Type;
-    top: string;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
     width: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
-}
-export type InlineType = Partial<_InlineType>;
-
-/** Inheritable */
-export interface _InstreamForeignObjectType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
-    alignmentAdjust: string;
-    alignmentBaseline: string;
-    
-    azimuth: string;
-    background: string;
-
-    baselineShift: string;
-    blockProgressionDimension: string;
-    blockProgressionDimensionMaximum: string;
-    blockProgressionDimensionMinimum: string;
-    blockProgressionDimensionOptimum: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    clip: string;
-    color: string;
-    contentHeight: string;
-    contentType: string;
-    contentWidth: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
-    height: string;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
-    id: string;
-    inlineProgressionDimension: string;
-    inlineProgressionDimensionMaximum: string;
-    inlineProgressionDimensionMinimum: string;
-    inlineProgressionDimensionOptimum: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    keepWithNext: string;
-    keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-    overflow: overflow_Type;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scaling: scaling_Type;
-    scalingMethod: scaling_method_Type;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textIndent: string;
-    textTransform: text_transform_Type;
-    top: string;
     verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
-    width: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
 }
-export type InstreamForeignObjectType = Partial<_InstreamForeignObjectType>;
-
 
 export interface LayoutMasterSetType extends InheritableProperties {}
 
 
-export interface _LeaderType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
-    alignmentAdjust: string;
-    alignmentBaseline: string;
-    
-    azimuth: string;
-    background: string;
+export interface LeaderType
+    extends AccessibilityProperties,
+    AuralProperties,
+    BorderPaddingAndBackgroundProperties,
+    FontProperties,
+    MarginPropertiesInline,
+    RelativePositionProperties,
+    TextOneProperties,
+    InheritableProperties {
 
-    baselineShift: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    color: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
-    id: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    keepWithNext: string;
-    keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textAltitude: string;
-    textDepth: string;
-    textIndent: string;
+    alignmentAdjust?: string;
+    alignmentBaseline?: string;
+    baselineShift?: string;
+    dominantBaseline?: DominantBaseline;
+    id?: string;
+    keepWithNext?: string;
+    keepWithPrevious?: string;
     textShadow: string;
-    textTransform: text_transform_Type;
-    top: string;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+    verticalAlign?: string;
 }
-export type LeaderType = Partial<_LeaderType>;
 
 export type left_Type = string;
 
@@ -2937,310 +1901,50 @@ export type page_break_inside_Type = ("auto" | "avoid" | "inherit");
 
 export type page_position_Type = ("first" | "last" | "rest" | "any" | "inherit");
 
-/** Inheritable */
-export interface _PageNumberCitationType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
-    alignmentAdjust: string;
-    alignmentBaseline: string;
-    
-    azimuth: string;
-    background: string;
+export interface PageNumberCitationType
+    extends AccessibilityProperties,
+    AuralProperties,
+    BorderPaddingAndBackgroundProperties,
+    FontProperties,
+    MarginPropertiesInline,
+    RelativePositionProperties,
+    TextOneProperties,
+    InheritableProperties {
 
-    baselineShift: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    color: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
-    id: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    keepWithNext: string;
-    keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
     refId: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textAltitude: string;
+    alignmentAdjust?: string;
+    alignmentBaseline?: string;
+    baselineShift?: string;
+    dominantBaseline?: DominantBaseline;
+    id?: string;
+    keepWithNext?: string;
+    keepWithPrevious?: string;
     textDecoration: text_decoration_Type;
-    textDepth: string;
-    textIndent: string;
     textShadow: string;
-    textTransform: text_transform_Type;
-    top: string;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+    verticalAlign?: string;
 }
-export type PageNumberCitationType = Partial<_PageNumberCitationType>;
 
-/** Inheritable */
-export interface _PageNumberType extends AccessibilityProperties, BorderPaddingAndBackgroundProperties {
-    alignmentAdjust: string;
-    alignmentBaseline: string;
-    
-    azimuth: string;
-    background: string;
+export interface PageNumberType
+    extends AccessibilityProperties,
+    AuralProperties,
+    BorderPaddingAndBackgroundProperties,
+    FontProperties,
+    MarginPropertiesInline,
+    RelativePositionProperties,
+    TextOneProperties,
+    InheritableProperties {
 
-    baselineShift: string;
-    border: string;
-
-    borderBottom: string;
-
-    borderCollapse: border_collapse_Type;
-    borderColor: border_color_Type;
-
-    borderLeft: string;
-
-    borderRight: string;
-
-    borderSeparation: length_bp_ip_direction_Type;
-    borderSpacing: string;
-
-    borderStyle: border_multi_style_Type;
-    borderTop: string;
-
-    borderWidth: border_margin_width_Type;
-    bottom: string;
-    captionSide: caption_side_Type;
-    color: string;
-    country: country_Type;
-    cue: string;
-    cueAfter: string;
-    cueBefore: string;
-    direction: direction_Type;
-    displayAlign: display_align_Type;
-    dominantBaseline: dominant_baseline_Type;
-    elevation: elevation_Type;
-    emptyCells: empty_cells_Type;
-    endIndent: string;
-    font: string;
-    fontFamily: string;
-    fontSelectionStrategy: font_selection_strategy_Type;
-    fontSize: string;
-    fontSizeAdjust: string;
-    fontStretch: string;
-    fontStyle: font_style_Type;
-    fontVariant: font_variant_Type;
-    fontWeight: font_weight_Type;
-    glyphOrientationHorizontal: orientation_Type;
-    glyphOrientationVertical: orientation_Type;
-    hyphenate: hyphenate_Type;
-    hyphenationCharacter: string;
-    hyphenationKeep: hyphenation_keep_Type;
-    hyphenationLadderCount: string;
-    hyphenationPushCharacterCount: string;
-    hyphenationRemainCharacterCount: string;
-    id: string;
-    intrusionDisplace: displace_Type;
-    keepTogether: keep_compound_Type;
-    keepTogetherWithinColumn: string;
-    keepTogetherWithinLine: string;
-    keepTogetherWithinPage: string;
-    keepWithNext: string;
-    keepWithPrevious: string;
-    language: language_Type;
-    lastLineEndIndent: string;
-    leaderAlignment: leader_alignment_Type;
-    leaderLength: string;
-    leaderLengthMaximum: string;
-    leaderLengthMinimum: string;
-    leaderLengthOptimum: string;
-    leaderPattern: leader_pattern_Type;
-    leaderPatternWidth: string;
-    left: string;
-    letterSpacing: string;
-    lineHeight: string;
-    lineHeightShiftAdjustment: line_height_shift_adjustment_Type;
-    lineStackingStrategy: line_stacking_strategy_Type;
-    linefeedTreatment: linefeed_treatment_Type;
-    margin: border_margin_width_Type;
-    marginBottom: string;
-    marginLeft: string;
-    marginRight: string;
-    marginTop: string;
-    maxWidth: string;
-    minHeight: string;
-    minWidth: string;
-    orphans: string;
-
-    pageBreakInside: page_break_inside_Type;
-    pause: string;
-    pauseAfter: string;
-    pauseBefore: string;
-    pitch: string;
-    pitchRange: string;
-    playDuring: string;
-    position: position_Type;
-    provisionalDistanceBetweenStarts: string;
-    provisionalLabelSeparation: string;
-    referenceOrientation: orientation_Type;
-    relativeAlign: relative_align_Type;
-    relativePosition: relative_position_Type;
-    richness: string;
-    right: string;
-
-    ruleStyle: rule_style_Type;
-    ruleThickness: string;
-    scoreSpaces: score_spaces_Type;
-    script: string;
-    spaceEnd: string;
-    spaceEndConditionality: conditionality_Type;
-    spaceEndMaximum: string;
-    spaceEndMinimum: string;
-    spaceEndOptimum: string;
-    spaceEndPrecedence: string;
-    spaceStart: string;
-    spaceStartConditionality: conditionality_Type;
-    spaceStartMaximum: string;
-    spaceStartMinimum: string;
-    spaceStartOptimum: string;
-    spaceStartPrecedence: string;
-    speak: string;
-    speakHeader: string;
-    speakNumeral: speak_numeral_Type;
-    speakPunctuation: string;
-    speechRate: string;
-    startIndent: string;
-    stress: string;
-    textAlign: text_align_Type;
-    textAlignLast: text_align_last_Type;
-    textAltitude: string;
+    alignmentAdjust?: string;
+    alignmentBaseline?: string;
+    baselineShift?: string;
+    dominantBaseline?: DominantBaseline;
+    id?: string;
+    keepWithNext?: string;
+    keepWithPrevious?: string;
     textDecoration: text_decoration_Type;
-    textDepth: string;
-    textIndent: string;
     textShadow: string;
-    textTransform: text_transform_Type;
-    top: string;
-    verticalAlign: string;
-    visibility: visibility_Type;
-    voiceFamily: string;
-    volume: string;
-    whiteSpace: white_space_Type;
-    whiteSpaceCollapse: white_space_collapse_Type;
-    whiteSpaceTreatment: white_space_treatment_Type;
-    widows: string;
-    wordSpacing: string;
-    wrapOption: wrap_option_Type;
-    writingMode: writing_mode_Type;
+    verticalAlign?: string;
 }
-export type PageNumberType = Partial<_PageNumberType>;
 
 export interface PageSequenceMasterType extends InheritableProperties {
     masterName: string;

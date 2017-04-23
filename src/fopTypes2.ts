@@ -115,7 +115,7 @@ export type transparent_Type = "transparent";
 
 export type treat_as_word_space_Type = ("auto" | "true" | "false" | "inherit");
 
-export type unicode_bidi_Type = ("normal" | "embed" | "bidi-override" | "inherit");
+export type UnicodeBidi = "normal" | "embed" | "bidi-override" | "inherit";
 
 export type use_font_metrics_Type = "use-font-metrics";
 
@@ -150,7 +150,7 @@ export type direction_Type = ("ltr" | "rtl" | "inherit");
 
 export type display_align_Type = ("auto" | "before" | "center" | "after" | "inherit");
 
-export type dominant_baseline_Type = ("auto" | "use-script" | "no-change" | "reset-size" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "inherit");
+export type DominantBaseline = "auto" | "use-script" | "no-change" | "reset-size" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "inherit";
 
 export type elevation_Type = ("below" | "level" | "above" | "higher" | "lower" | "0" | "90" | "180" | "270" | "0deg" | "90deg" | "180deg" | "270deg" | "inherit");
 
