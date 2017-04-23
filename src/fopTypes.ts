@@ -41,17 +41,14 @@ export type score_spaces_Type = ("true" | "false" | "inherit");
 export type ShowDestination = "replace" | "new";
 export type text_align_last_Type = ("start" | "center" | "end" | "justify" | "inside" | "outside" | "left" | "right" | "inherit");
 export type text_align_Type = ("start" | "center" | "end" | "justify" | "inside" | "outside" | "left" | "right" | "inherit");
-export type text_altitude_Type = string;
 /** not implemented */
 export type TextDecoration = "none" | "underline" | "no-underline" | "overline" | "no-overline" | "line-through" | "no-line-through" | "blink" | "no-blink" | "inherit";
 export type text_transform_Type = ("capitalize" | "uppercase" | "lowercase" | "none" | "inherit");
-export type top_Type = string;
 export type transparent_Type = "transparent";
 export type TreatAsWordSpace = "auto" | "true" | "false" | "inherit";
 export type UnicodeBidi = "normal" | "embed" | "bidi-override" | "inherit";
 export type use_font_metrics_Type = "use-font-metrics";
 export type vertical_align_base_Type = ("baseline" | "middle" | "sub" | "super" | "text-top" | "text-bottom" | "top" | "bottom" | "inherit");
-export type vertical_align_Type = string;
 export type vertical_position_Type = ("top" | "center" | "bottom");
 /** property is not implemented yet */
 export type visibility_Type = ("visible" | "hidden" | "collapse" | "inherit");
@@ -59,27 +56,20 @@ export type white_space_collapse_Type = ("false" | "true" | "inherit");
 /** property ignored */
 export type white_space_treatment_Type = ("ignore" | "preserve" | "ignore-if-before-linefeed" | "ignore-if-after-linefeed" | "ignore-if-surrounding-linefeed" | "inherit");
 export type white_space_Type = ("normal" | "pre" | "nowrap" | "inherit");
-export type widows_Type = string;
 export type width_Type = ("thin" | "medium" | "thick");
 export type wrap_option_Type = ("no-wrap" | "wrap" | "inherit");
 export type writing_mode_Type = ("lr-tb" | "rl-tb" | "tb-rl" | "lr" | "rl" | "tb" | "inherit");
-export type length_bp_ip_direction_Type = string;
 export type country_Type = ("none" | "inherit" | "AF" | "AL" | "DZ" | "AS" | "AD" | "AO" | "AI" | "AQ" | "AG" | "AR" | "AM" | "AW" | "AU" | "AT" | "AZ" | "BS" | "BH" | "BD" | "BB" | "BY" | "BE" | "BZ" | "BJ" | "BM" | "BT" | "BO" | "BA" | "BW" | "BV" | "BR" | "IO" | "BN" | "BG" | "BF" | "BI" | "KH" | "CM" | "CA" | "CV" | "KY" | "CF" | "TD" | "CL" | "CN" | "CX" | "CC" | "CO" | "KM" | "CG" | "CD" | "CK" | "CR" | "CI" | "HR" | "CU" | "CY" | "CZ" | "DK" | "DJ" | "DM" | "DO" | "TP" | "EC" | "EG" | "SV" | "GQ" | "ER" | "EE" | "ET" | "FK" | "FO" | "FJ" | "FI" | "FR" | "GF" | "PF" | "TF" | "GA" | "GM" | "GE" | "DE" | "GH" | "GI" | "GR" | "GL" | "GD" | "GP" | "GU" | "GT" | "GN" | "GW" | "GY" | "HT" | "HM" | "VA" | "HN" | "HK" | "HU" | "IS" | "IN" | "ID" | "IR" | "IQ" | "IE" | "IL" | "IT" | "JM" | "JP" | "JO" | "KZ" | "KE" | "KI" | "KP" | "KR" | "KW" | "KG" | "LA" | "LV" | "LB" | "LS" | "LR" | "LY" | "LI" | "LT" | "LU" | "MO" | "MK" | "MG" | "MW" | "MY" | "MV" | "ML" | "MT" | "MH" | "MQ" | "MR" | "MU" | "YT" | "MX" | "FM" | "MD" | "MC" | "MN" | "MS" | "MA" | "MZ" | "MM" | "NA" | "NR" | "NP" | "NL" | "AN" | "NC" | "NZ" | "NI" | "NE" | "NG" | "NU" | "NF" | "MP" | "NO" | "OM" | "PK" | "PW" | "PS" | "PA" | "PG" | "PY" | "PE" | "PH" | "PN" | "PL" | "PT" | "PR" | "QA" | "RE" | "RO" | "RU" | "RW" | "SH" | "KN" | "LC" | "PM" | "VC" | "WS" | "SM" | "ST" | "SA" | "SN" | "SC" | "SL" | "SG" | "SK" | "SI" | "SB" | "SO" | "ZA" | "GS" | "ES" | "LK" | "SD" | "SR" | "SJ" | "SZ" | "SE" | "CH" | "SY" | "TW" | "TJ" | "TZ" | "TH" | "TG" | "TK" | "TO" | "TT" | "TN" | "TR" | "TM" | "TC" | "TV" | "UG" | "UA" | "AE" | "GB" | "US" | "UM" | "UY" | "UZ" | "VU" | "VE" | "VN" | "VG" | "VI" | "WF" | "EH" | "YE" | "YU" | "ZM" | "ZW");
 export type direction_Type = ("ltr" | "rtl" | "inherit");
 export type display_align_Type = ("auto" | "before" | "center" | "after" | "inherit");
 export type DominantBaseline = "auto" | "use-script" | "no-change" | "reset-size" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "inherit";
 export type elevation_Type = ("below" | "level" | "above" | "higher" | "lower" | "0" | "90" | "180" | "270" | "0deg" | "90deg" | "180deg" | "270deg" | "inherit");
 export type empty_cells_Type = ("show" | "hide" | "inherit");
-export type end_indent_Type = string;
 export type EndsRow = "true" | "false";
-export type extent_Type = string;
 export type force_page_count_Type = ("auto" | "even" | "odd" | "end-on-even" | "end-on-odd" | "no-force" | "inherit");
 export type force_Type = "force";
-export type height_Type = string;
 export type horizontal_position_Type = ("left" | "center" | "right");
 export type hyphenate_Type = ("false" | "true" | "inherit");
-export type hyphenation_character_Type = string;
-export type hyphenation_ladder_count_Type = string;
 export type indicate_destination_Type = ("true" | "false");
 export type inherit_Type = "inherit";
 export type language_Type = ("none" | "inherit" | "AY" | "GN" | "QU" | "DZ" | "MY" | "KM" | "ZH" | "JA" | "KO" | "LO" | "TH" | "BO" | "VI" | "LV" | "LT" | "EU" | "BR" | "GA" | "GD" | "CY" | "KN" | "ML" | "TA" | "TE" | "KL" | "IK" | "ET" | "FI" | "HU" | "AF" | "DA" | "NL" | "EN" | "FO" | "FY" | "DE" | "IS" | "NO" | "SV" | "YI" | "OM" | "AA" | "SO" | "AB" | "KA" | "AS" | "BN" | "BH" | "GU" | "HI" | "KS" | "MR" | "NE" | "OR" | "PA" | "SA" | "SD" | "SI" | "UR" | "SQ" | "HY" | "EO" | "IA" | "IE" | "VO" | "KU" | "PS" | "FA" | "TG" | "EL" | "LA" | "HA" | "RW" | "RN" | "LN" | "SG" | "ST" | "TN" | "SN" | "SS" | "SW" | "TS" | "TW" | "WO" | "XH" | "YO" | "ZU" | "FJ" | "ID" | "JV" | "MG" | "MS" | "MI" | "SM" | "SU" | "TL" | "TO" | "CA" | "CO" | "FR" | "GL" | "IT" | "MO" | "OC" | "PT" | "RM" | "RO" | "ES" | "AM" | "AR" | "HE" | "MT" | "TI" | "BG" | "BE" | "HR" | "CS" | "MK" | "PL" | "RU" | "SR" | "SH" | "SK" | "SL" | "UK" | "AZ" | "BA" | "KK" | "KY" | "TT" | "TR" | "TK" | "UZ" | "BI" | "MN" | "NA");
@@ -97,7 +87,6 @@ export type speak_Type = ("normal" | "none" | "spell-out" | "inherit");
 export type speech_rate_base_Type = ("x-slow" | "slow" | "medium" | "fast" | "x-fast" | "faster" | "slower" | "inherit");
 export type StartingState = "show" | "hide";
 export type StartsRow = "true" | "false";
-export type border_top_width_Type = string;
 export type box_alignment_Type = ("top" | "text-top" | "bottom" | "text-bottom");
 export type Breaks = "inherit" | "auto" | "column" | "page" | "even-page" | "odd-page";
 export type caption_side_Type = ("before" | "after" | "start" | "end" | "top" | "bottom" | "left" | "right" | "inherit");
@@ -105,13 +94,12 @@ export type AbsolutePosition = "auto" | "absolute" | "fixed" | "inherit";
 export type page_break_after_Type = ("auto" | "always" | "avoid" | "left" | "right" | "inherit");
 export type page_break_inside_Type = ("auto" | "avoid" | "inherit");
 
-export interface AccessibilityProperties {
-}
-
 export interface AccessibilityProperties_unsupported_by_FOP {
     sourceDocument?: string;
     role?: string;
 }
+
+export interface AccessibilityProperties {}
 
 export interface BorderProperties {
     border?: string;
@@ -265,7 +253,7 @@ export interface InheritableProperties {
     borderColor?: string;
     borderLeft?: string;
     borderRight?: string;
-    borderSeparation?: length_bp_ip_direction_Type;
+    borderSeparation?: string;
     borderStyle?: string;
     borderTop?: string;
     borderWidth?: string;
@@ -505,51 +493,14 @@ export type absolute_position_Type = ("auto" | "absolute" | "fixed" | "inherit")
 
 /** An  keyword refers to an entry in a table of font sizes computed and kept by the user agent. Possible values are: [ xx-small | x-small | small | medium | large | x-large | xx-large ] On a computer screen a scaling factor of 1.2 is suggested between adjacent indexes; if the "medium" font is 12pt, the "large" font could be 14.4pt. Different media may need different scaling factors. Also, the user agent should take the quality and availability of fonts into account when computing the table. The table may be different from one font family to another. Note. In CSS1, the suggested scaling factor between adjacent indexes was 1.5 which user experience proved to be too large. */
 export type absolute_size_Type = ("xx-small" | "x-small" | "small" | "medium" | "large" | "x-large" | "xx-large");
-
 export type active_state_Type = ("link" | "visited" | "active" | "hover" | "focus");
-
-export type alignment_adjust_Type = string;
-
-export type alignment_baseline_Type = string;
-
 export type alignment_Type = ("baseline" | "before-edge" | "text-before-edge" | "middle" | "central" | "after-edge" | "text-after-edge" | "ideographic" | "alphabetic" | "hanging" | "mathematical");
-
 export type always_Type = "always";
-
-/** A representation of an angle consisting of an optional '+' or  '-' character immediately followed by a  immediately followed by an angle unit identifier. Angle unit identifiers are: 'deg' (for degrees), 'grad' (for grads), and 'rad' (for radians). The specified values are normalized to the range 0deg to 360deg. A property may define additional constraints on the value. */
-export type angle_Type = string;
-
 export type auto_Type = "auto";
-
 export type azimuth_base_Type = ("left-side" | "far-left" | "left" | "center-left" | "center" | "center-right" | "right" | "far-right" | "right-side" | "behind" | "leftwards" | "rightwards" | "inherit");
-
-export type azimuth_Type = string;
-
-export type background_color_Type = string;
-
 export type background_image_Type = ("uri-specification" | "none" | "inherit");
-
 export type background_position_base_Type = ("top left" | "top center" | "top right" | "center left" | "center center" | "center right" | "bottom left" | "bottom center" | "bottom right");
-
-export type background_position_horizontal_Type = string;
-
-// interface _background_position_length_Type {}
-// export interface background_position_length_Type extends _background_position_length_Type { constructor: { new(): background_position_length_Type }; }
-// export var background_position_length_Type: { new(): background_position_length_Type };
-
-// interface _background_position_percentage_Type {}
-// export interface background_position_percentage_Type extends _background_position_percentage_Type { constructor: { new(): background_position_percentage_Type }; }
-// export var background_position_percentage_Type: { new(): background_position_percentage_Type };
-
-export type background_position_Type = string;
-
-export type background_position_vertical_Type = string;
-
-export type background_Type = string;
-
 export type baseline_base_Type = ("baseline" | "sub" | "super");
-
-export type baseline_shift_Type = string;
 
 export interface BasicLinkType
     extends AccessibilityProperties,
@@ -582,10 +533,6 @@ export interface BidiOverrideType extends AuralProperties, FontProperties, Relat
 }
 
 export type blank_or_not_blank_Type = ("blank" | "not-blank" | "any" | "inherit");
-
-export type block_progression_dimension_maximum_Type = string;
-
-export type block_progression_dimension_optimum_Type = string;
 
 export interface BlockContainerType
     extends BlockProperties,
