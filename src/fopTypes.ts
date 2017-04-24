@@ -14,7 +14,7 @@ export type font_selection_strategy_Type = ("auto" | "character-by-character" | 
 export type font_stretch_Type = ("normal" | "wider" | "narrower" | "ultra-condensed" | "extra-condensed" | "condensed" | "semi-condensed" | "semi-expanded" | "expanded" | "extra-expanded" | "ultra-expanded" | "inherit");
 export type font_style_Type = ("normal" | "italic" | "oblique" | "backslant" | "inherit");
 export type font_variant_Type = ("normal" | "small-caps" | "inherit");
-export type font_weight_Type = ("normal" | "bold" | "bolder" | "lighter" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "inherit");
+export type FontWeight = number | "normal" | "bold" | "bolder" | "lighter" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "inherit";
 export type hyphenation_keep_Type = ("auto" | "column" | "page" | "inherit");
 export type displace_Type = ("inherit" | "auto" | "none" | "line" | "indent" | "block");
 export type letter_value_Type = ("auto" | "alphabetic" | "traditional");
@@ -228,7 +228,6 @@ export interface InheritableProperties_unsupported_by_FOP {
     lineStackingStrategy?: line_stacking_strategy_Type;
     linefeedTreatment?: linefeed_treatment_Type;
 
-    margin?: string;
     maxWidth?: string;
     minHeight?: string;
     minWidth?: string;
@@ -240,8 +239,6 @@ export interface InheritableProperties_unsupported_by_FOP {
 
     textTransform?: text_transform_Type;
     visibility?: visibility_Type;
-    whiteSpace?: white_space_Type;
-    whiteSpaceTreatment?: white_space_treatment_Type;
 
     wordSpacing?: string;
     writingMode?: writing_mode_Type;
@@ -264,7 +261,7 @@ export interface InheritableProperties {
     fontFamily?: string;
     fontSize?: string;
     fontStyle?: font_style_Type;
-    fontWeight?: font_weight_Type;
+    fontWeight?: FontWeight;
     hyphenate?: hyphenate_Type;
     hyphenationCharacter?: string;
     hyphenationPushCharacterCount?: string;
@@ -283,6 +280,7 @@ export interface InheritableProperties {
     leaderPatternWidth?: string;
     letterSpacing?: string;
     lineHeight?: string;
+    margin?: string;
     orphans?: string;
     position?: position_Type;
     provisionalDistanceBetweenStarts?: string;
@@ -294,16 +292,18 @@ export interface InheritableProperties {
     textAlign?: text_align_Type;
     textAlignLast?: text_align_last_Type;
     textIndent?: string;
+    whiteSpace?: white_space_Type;
+    whiteSpaceTreatment?: white_space_treatment_Type;
     whiteSpaceCollapse?: white_space_collapse_Type;
     widows?: string;
     wrapOption?: wrap_option_Type;
 }
 
 export interface MarginPropertiesBasic {
-    marginBottom?: string;
-    marginLeft?: string;
-    marginRight?: string;
-    marginTop?: string;
+    marginBottom?: number | string;
+    marginLeft?: number | string;
+    marginRight?: number | string;
+    marginTop?: number | string;
 }
 
 export interface MarginPropertiesVerticalSpace {
@@ -389,7 +389,7 @@ export interface FontProperties {
     fontFamily?: string;
     fontSize?: string;
     fontStyle?: font_style_Type;
-    fontWeight?: font_weight_Type;
+    fontWeight?: FontWeight;
 }
 
 export interface FontProperties_unsupported_by_FOP {
@@ -632,6 +632,8 @@ export interface InstreamForeignObjectType
     ProgressionProperties,
     ClipProperties,
     InheritableProperties {
+
+    dangerouslySetInnerXML?: { __xml: string };
 
     alignmentAdjust?: string;
     alignmentBaseline?: string;
@@ -1113,7 +1115,7 @@ export interface WrapperType extends InheritableProperties {
     id?: string;
 }
 
-export interface IntrinsicFoElements {
+export interface Elements {
     basicLink: BasicLinkType;
     bidiOverride: BidiOverrideType;
     block: BlockType;
