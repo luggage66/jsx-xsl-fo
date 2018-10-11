@@ -72,6 +72,8 @@ export function createElement<P>(type, props, ...children): XslfoElement<P> {
     return element;
 }
 
+// export { JSX as createElement } from './jsxTypes';
+
 function elementToStream(element, writer) {
     if (!element) { return; }
 

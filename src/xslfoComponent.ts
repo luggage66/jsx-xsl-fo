@@ -1,4 +1,5 @@
 import { XslfoNode, XslfoElement } from './elements';
+import { JSX } from './jsxTypes';
 
 export abstract class XlsfoComponent<TProps> {
     props: Readonly<{ children?: XslfoNode }> & Readonly<TProps>;

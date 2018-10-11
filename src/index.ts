@@ -1,7 +1,3 @@
-import { XlsfoComponent } from './xslfoComponent';
-import { TagProps, XslfoElement } from './elements';
-import { Elements } from './fopTypes';
-
 export {
     createElement,
     renderToString,
@@ -12,10 +8,7 @@ export {
 } from './implementation';
 
 export {
-    Elements
-} from './fopTypes';
-
-export {
+    Elements,
     BlockType
 } from './fopTypes';
 
@@ -26,24 +19,4 @@ export {
 
 export interface AllowAllProps {
     [elemName: string]: any;
-}
-
-declare global {
-    namespace JSX {
-        interface Element extends XslfoElement<any> {}
-        interface ElementClass extends XlsfoComponent<any> {
-            render(): JSX.Element | null;
-        }
-        interface ElementAttributesProperty { props: {}; }
-
-        interface IntrinsicAttributes {
-            // key?: string | number;
-        }
-        interface IntrinsicClassAttributes<T> {}
-
-        interface IntrinsicElements extends Elements {}
-        // interface IntrinsicElements {
-        //     [name: string]: any;
-        // }
-    }
 }
