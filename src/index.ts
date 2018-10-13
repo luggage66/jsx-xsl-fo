@@ -1,3 +1,5 @@
+export { XslfoElement } from './elements';
+
 export {
     createElement,
     renderToString,

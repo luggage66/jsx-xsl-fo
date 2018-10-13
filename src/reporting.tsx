@@ -1,4 +1,5 @@
-/** @jsx XSLFO.createElement */
+/* @jsx createElement */
+import { createElement } from './index';
 import * as XSLFO from './index';
 import * as uuid from 'uuid';
 

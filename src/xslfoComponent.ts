@@ -1,5 +1,4 @@
-import { XslfoNode, XslfoElement } from './elements';
-import { JSX } from './jsxTypes';
+import { XslfoNode } from './elements';
 
 export abstract class XlsfoComponent<TProps> {
     props: Readonly<{ children?: XslfoNode }> & Readonly<TProps>;
@@ -8,7 +7,7 @@ export abstract class XlsfoComponent<TProps> {
         this.props = props;
     }
 
-    abstract render(): JSX.Element;
+    abstract render(): XslfoNode;
 }
 
 export interface ComponentClass<P> {

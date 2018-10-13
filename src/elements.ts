@@ -6,8 +6,8 @@ export interface TagProps<T> {
 
 export type XslfoText = string | number;
 export type XslfoChild = XslfoElement<any> | XslfoText;
-
-export type XslfoNode = XslfoChild | boolean | null | undefined;
+export interface XslfoNodeArray extends Array<XslfoNode> {}
+export type XslfoNode = XslfoNodeArray | XslfoChild | boolean | null | undefined;
 
 export interface XslfoElement<P> {
     $$typeof: symbol;

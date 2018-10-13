@@ -939,6 +939,7 @@ export interface RetrieveMarkerType extends InheritableProperties {
 }
 
 export interface RootType extends InheritableProperties {
+    "xmlns:fo"?: string;
     mediaUsage?: MediaUsage;
 }
 

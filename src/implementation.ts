@@ -2,7 +2,9 @@ import * as decamelize from 'decamelize';
 import * as XMLWriter from 'xml-writer';
 import * as process from 'process';
 // import { XlsfoComponent } from './xslfoComponent';
-import { XslfoElement } from './elements';
+import { XlsfoComponent } from './xslfoComponent';
+import { TagProps, XslfoElement, XslfoNode } from './elements';
+import { Elements } from './fopTypes';
 
 const XSLFOElementType = Symbol('xslfo.element');
 
@@ -60,7 +62,7 @@ function renderAttributes(attributes) {
     }, '');
 }
 
-export function createElement<P>(type, props, ...children): XslfoElement<P> {
+export function createElement<P>(type, props, ...children: Array<XslfoNode>): XslfoElement<P> {
     let element = {
         $$typeof: XSLFOElementType,
         type,
@@ -72,7 +74,25 @@ export function createElement<P>(type, props, ...children): XslfoElement<P> {
     return element;
 }
 
-// export { JSX as createElement } from './jsxTypes';
+export namespace createElement {
+    export namespace JSX {
+        export interface Element extends XslfoElement<any> {}
+        export interface ElementClass extends XlsfoComponent<any> {
+            render(): XslfoNode;
+        }
+        export interface ElementAttributesProperty { props: {}; }
+
+        export interface IntrinsicAttributes {
+            // key?: string | number;
+        }
+        export interface IntrinsicClassAttributes<T> {}
+
+        export interface IntrinsicElements extends Elements {}
+        // interface IntrinsicElements {
+        //     [name: string]: any;
+        // }
+    }
+}
 
 function elementToStream(element, writer) {
     if (!element) { return; }
