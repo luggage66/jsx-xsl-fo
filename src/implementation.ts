@@ -6,6 +6,7 @@ import { XlsfoComponent } from './xslfoComponent';
 import { TagProps, XslfoElement, XslfoNode } from './elements';
 import { Elements } from './fopTypes';
 
+// tslint:disable-next-line:variable-name
 const XSLFOElementType = Symbol('xslfo.element');
 
 const twoPartProperties = [
@@ -44,7 +45,7 @@ const twoPartProperties = [
 function fixAttributeName(attributeName) {
     attributeName = decamelize(attributeName, '-');
 
-    let splitFrom = twoPartProperties.find(p => attributeName.indexOf(p) === 0);
+    const splitFrom = twoPartProperties.find(p => attributeName.indexOf(p) === 0);
 
     if (splitFrom) {
         return `${splitFrom}.${attributeName.substring(splitFrom.length + 1)}`;
@@ -63,7 +64,7 @@ function renderAttributes(attributes) {
 }
 
 export function createElement<P>(type, props, ...children: Array<XslfoNode>): XslfoElement<P> {
-    let element = {
+    const element = {
         $$typeof: XSLFOElementType,
         type,
         props: { ...props }
@@ -108,7 +109,7 @@ function elementToStream(element, writer) {
 
         let innerXML;
 
-        for (let attributeName in element.attributes) {
+        for (const attributeName in element.attributes) {
             if (attributeName === 'dangerouslySetInnerXML') {
                 innerXML = element.attributes[attributeName].__xml;
             }
@@ -129,7 +130,7 @@ function elementToStream(element, writer) {
 }
 
 function renderToXmlWriter(element, writer) {
-    let elementTree = processElement(element);
+    const elementTree = processElement(element);
 
     writer.startDocument('1.0', 'UTF-8');
     elementToStream(elementTree, writer);
@@ -137,19 +138,20 @@ function renderToXmlWriter(element, writer) {
 }
 
 export function renderToString(element) {
-    let writer = new XMLWriter(true);
+    const writer = new XMLWriter(true);
     renderToXmlWriter(element, writer);
 
     return writer.toString();
 }
 
 export function renderToStream(element: XslfoElement<any>, stream: NodeJS.WritableStream) {
-    let writer = new XMLWriter(true, (a, b) => {
+    const writer = new XMLWriter(true, (a, b) => {
         stream.write(a, 'utf8');
     });
     renderToXmlWriter(element, writer);
 }
 
+// tslint:disable-next-line:variable-name
 export const Children = {
     map(children, fn, thisArg?: any) {
         if (Array.isArray(children)) {
@@ -161,10 +163,10 @@ export const Children = {
     },
     only(children) {
         if (Array.isArray(children)) {
-            throw new Error("XSLFO.Children.only should only be passed a children with exactly one child.");
+            throw new Error('XSLFO.Children.only should only be passed a children with exactly one child.');
         }
         if (typeof(children) === 'undefined') {
-            throw new Error("XSLFO.Children.only should only be passed a children with exactly one child.");
+            throw new Error('XSLFO.Children.only should only be passed a children with exactly one child.');
         }
 
         return children;
@@ -195,21 +197,21 @@ export function processElement(element) {
         }
 
         if (typeof(element.type) === 'string') {
-            let { children, ...attributes } = element.props;
+            const { children, ...attributes } = element.props;
 
-            children = processElement(children);
+            const processedChildren = processElement(children);
 
             return {
                 tag: decamelize(element.type, '-'),
                 attributes,
-                children
+                children: processedChildren
             };
         }
         else {
             let childTree;
 
             if (typeof(element.type === 'function')) {
-                let type = new element.type(element.props);
+                const type = new element.type(element.props);
 
                 if (type.render) {
                     childTree = type.render();
@@ -228,7 +230,7 @@ export function processElement(element) {
 }
 
 export function cloneElement(element, props, ...children) {
-    let { props: originalProps, children: originalChildren, ...rest } = element;
+    const { props: originalProps, children: originalChildren, ...rest } = element;
 
     return {
         ...rest,

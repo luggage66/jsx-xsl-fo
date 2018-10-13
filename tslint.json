@@ -1,7 +1,7 @@
 {
     "extends": "tslint:recommended",
     "rules": {
-        "quotemark": [true, "jsx-double", "avoid-escape"],
+        "quotemark": [true, "single", "jsx-double", "avoid-escape"],
         "max-classes-per-file": [false, 1],
         "trailing-comma": [false],
         "ordered-imports": [false],
@@ -13,6 +13,12 @@
         "object-literal-key-quotes": [ true, "as-needed" ],
         "forin": false,
         "interface-name": [false],
-        "no-namespace": [ false ]
+        "no-namespace": [ false ],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+        "member-ordering": [false],
+        "no-shadowed-variable": false,
+        "no-empty-interface": false,
+        "array-type": [true, "generic"],
+        "no-floating-promises": [true]
     }
 }

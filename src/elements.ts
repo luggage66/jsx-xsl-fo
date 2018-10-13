@@ -16,5 +16,6 @@ export interface XslfoElement<P> {
 }
 
 export interface StatelessComponent<TProps> {
+    // tslint:disable-next-line:callable-types
     (props: TProps & { children: XslfoNode }): XslfoElement<any>;
 }
