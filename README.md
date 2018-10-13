@@ -122,6 +122,29 @@ If you need to embed some other xml (e.g. SVG) use `dangerouslySetInnerXML`.
 </instream-foreign-object>
 ```
 
+# Changes
+
+## 2.1: ?
+
+## 3.0:
+
+* JSX namespace no longer global.
+
+This style of import works (For JSX)
+
+```ts
+/* @jsx createReportElement */
+import { createElement as createReportElement } from 'jsx-xsl-fo';
+```
+
+This does NOT work.
+
+```ts
+/* @jsx XSLFO.createElement */
+import * as XSLFO from 'jsx-xsl-fo';
+```
+
+
 # Future Plans
 
 * Medium Term
