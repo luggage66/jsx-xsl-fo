@@ -1,4 +1,4 @@
-import * as decamelize from 'decamelize';
+import decamelize from 'decamelize';
 import * as XMLWriter from 'xml-writer';
 import * as process from 'process';
 // import { XlsfoComponent } from './xslfoComponent';
@@ -211,7 +211,13 @@ export function processElement(element) {
             let childTree;
 
             if (typeof(element.type === 'function')) {
-                const type = new element.type(element.props);
+
+                let type;
+                try {
+                    type = new element.type(element.props);
+                } catch (ex) {
+                    type = element.type(element.props);
+                }
 
                 if (type.render) {
                     childTree = type.render();

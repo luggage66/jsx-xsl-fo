@@ -1,6 +1,6 @@
 {
   "name": "jsx-xsl-fo",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "Use JSX as a template language to generate XSL-FO documents.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,13 +25,13 @@
   },
   "homepage": "https://github.com/luggage66/jsx-xsl-fo#readme",
   "devDependencies": {
-    "@types/decamelize": "^1.2.0",
-    "@types/node": "^10.11.7",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.2"
+    "@types/decamelize": "^3.0.3",
+    "@types/node": "^11.11.4",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.4000"
   },
   "dependencies": {
-    "decamelize": "^2.0.0",
+    "decamelize": "^3.0.0",
     "uuid": "^3.3.2",
     "xml-writer": "^1.7.0"
   }
