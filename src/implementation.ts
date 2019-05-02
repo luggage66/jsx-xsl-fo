@@ -1,13 +1,12 @@
 import decamelize from 'decamelize';
 import * as XMLWriter from 'xml-writer';
-import * as process from 'process';
 // import { XlsfoComponent } from './xslfoComponent';
-import { XlsfoComponent } from './xslfoComponent';
-import { TagProps, XslfoElement, XslfoNode } from './elements';
+import { XlsfoComponent, ComponentClass } from './xslfoComponent';
+import { TagProps, XslfoElement, XslfoNode, XslFoIntrinsicAttributes, StatelessComponent } from './elements';
 import { Elements } from './fopTypes';
 
 // tslint:disable-next-line:variable-name
-const XSLFOElementType = Symbol('xslfo.element');
+const  XSLFOElementType = Symbol('xslfo.element');
 
 const twoPartProperties = [
     'block-progression-dimension.maximum',
@@ -42,7 +41,7 @@ const twoPartProperties = [
     'space.minimum'
 ].map(p => p.replace(/[.].*/, ''));
 
-function fixAttributeName(attributeName) {
+function fixAttributeName(attributeName: string) {
     attributeName = decamelize(attributeName, '-');
 
     const splitFrom = twoPartProperties.find(p => attributeName.indexOf(p) === 0);
@@ -53,14 +52,6 @@ function fixAttributeName(attributeName) {
     else {
         return attributeName;
     }
-}
-
-function renderAttributes(attributes) {
-    if (!attributes) { return; }
-
-    return Object.keys(attributes).reduce((prev, curr) => {
-        return prev + (attributes[curr] !== undefined ? ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"' : '');
-    }, '');
 }
 
 export function createElement<P>(type, props, ...children: Array<XslfoNode>): XslfoElement<P> {
@@ -83,7 +74,7 @@ export namespace createElement {
         }
         export interface ElementAttributesProperty { props: {}; }
 
-        export interface IntrinsicAttributes {
+        export interface IntrinsicAttributes extends XslFoIntrinsicAttributes {
             // key?: string | number;
         }
         export interface IntrinsicClassAttributes<T> {}
@@ -95,14 +86,16 @@ export namespace createElement {
     }
 }
 
-function elementToStream(element, writer) {
+function elementToStream(element: ResolvedNode, writer: any) {
     if (!element) { return; }
 
     if (typeof(element) === 'string') {
         writer.text(element);
     }
     else if (Array.isArray(element)) {
-        Array.prototype.forEach.call(element, (e) => elementToStream(e, writer));
+        for (const e of element) {
+            elementToStream(e, writer);
+        }
     }
     else {
         writer.startElementNS('fo', element.tag);
@@ -111,7 +104,8 @@ function elementToStream(element, writer) {
 
         for (const attributeName in element.attributes) {
             if (attributeName === 'dangerouslySetInnerXML') {
-                innerXML = element.attributes[attributeName].__xml;
+                // HACK: check this better
+                innerXML = (element.attributes[attributeName] as any).__xml;
             }
             else {
                 writer.writeAttribute(fixAttributeName(attributeName), element.attributes[attributeName]);
@@ -129,7 +123,7 @@ function elementToStream(element, writer) {
     }
 }
 
-function renderToXmlWriter(element, writer) {
+function renderToXmlWriter(element: XslfoNode, writer: any) {
     const elementTree = processElement(element);
 
     writer.startDocument('1.0', 'UTF-8');
@@ -137,7 +131,7 @@ function renderToXmlWriter(element, writer) {
     writer.endDocument();
 }
 
-export function renderToString(element) {
+export function renderToString(element: XslfoNode) {
     const writer = new XMLWriter(true);
     renderToXmlWriter(element, writer);
 
@@ -179,8 +173,20 @@ export const Children = {
     }
 };
 
-export function processElement(element) {
-    if (!element) { return element; }
+interface ResolvedElement<T> {
+    tag: string;
+    attributes: XslFoIntrinsicAttributes & T;
+    children: ResolvedNode;
+}
+
+export type ResolvedText = string;
+export type ResolvedChild = ResolvedElement<any> | ResolvedText;
+export interface ResolvedNodeArray extends Array<ResolvedNode> {}
+export type ResolvedNode = ResolvedNodeArray | ResolvedChild | null;
+
+
+export function processElement(element: XslfoNode): ResolvedNode {
+    if (!element) { return null; }
 
     if (typeof(element) === 'string') {
         return element;
@@ -188,12 +194,15 @@ export function processElement(element) {
     else if (typeof(element) === 'number') {
         return element.toString();
     }
+    else if (typeof(element) === 'boolean') {
+        return element.toString();
+    }
     else if (Array.isArray(element)) {
         return element.map(processElement);
     }
     else {
         if (element.$$typeof !== XSLFOElementType) {
-            throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${element.$$typeof}`);
+            throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${String(element.$$typeof)}`);
         }
 
         if (typeof(element.type) === 'string') {
@@ -205,25 +214,18 @@ export function processElement(element) {
                 tag: decamelize(element.type, '-'),
                 attributes,
                 children: processedChildren
-            };
+            } as ResolvedElement<any>;
         }
         else {
-            let childTree;
+            let childTree: XslfoNode;
 
-            if (typeof(element.type === 'function')) {
+            if (typeof(element.type) === 'function') {
 
-                let type;
                 try {
-                    type = new element.type(element.props);
+                    const componentInstance = new (element.type as ComponentClass<any>)(element.props);
+                    childTree = componentInstance.render();
                 } catch (ex) {
-                    type = element.type(element.props);
-                }
-
-                if (type.render) {
-                    childTree = type.render();
-                }
-                else {
-                    childTree = type;
+                    childTree = (element.type as StatelessComponent<any>)(element.props);
                 }
             }
             else {
@@ -235,7 +237,7 @@ export function processElement(element) {
     }
 }
 
-export function cloneElement(element, props, ...children) {
+export function cloneElement<P>(element: XslfoElement<P>, props: Partial<P>, ...children: Array<XslfoNode>) {
     const { props: originalProps, children: originalChildren, ...rest } = element;
 
     return {

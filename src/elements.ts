@@ -12,10 +12,14 @@ export type XslfoNode = XslfoNodeArray | XslfoChild | boolean | null | undefined
 export interface XslfoElement<P> {
     $$typeof: symbol;
     type: string | ComponentClass<P> | StatelessComponent<P>;
-    props: P;
+    props: P & { children: XslfoNode };
 }
 
 export interface StatelessComponent<TProps> {
     // tslint:disable-next-line:callable-types
-    (props: TProps & { children: XslfoNode }): XslfoElement<any>;
+    (props: TProps & { children: XslfoNode }): XslfoNode;
+}
+
+export interface XslFoIntrinsicAttributes {
+    dangerouslySetInnerXML?: { __xml: string; };
 }

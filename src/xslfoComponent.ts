@@ -12,4 +12,5 @@ export abstract class XlsfoComponent<TProps> {
 
 export interface ComponentClass<P> {
     new (props?: P): XlsfoComponent<P>;
+    render(): XslfoNode;
 }
