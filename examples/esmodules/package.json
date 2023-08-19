@@ -1,0 +1,21 @@
+{
+  "name": "@jsx-xsl-fo/esm-example",
+  "version": "1.0.0",
+  "description": "An example ES Module usage",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/ tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@jsx-xsl-fo/core": "workspace:^",
+    "@jsx-xsl-fo/reporting": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.1",
+    "typescript": "^5.1.6"
+  }
+}

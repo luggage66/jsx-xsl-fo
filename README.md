@@ -1,25 +1,74 @@
-A JSX to XSL-FO templating tool with react-like API w/ TypeScript typess
+Create your XSL-FO documents and reports in modern JavaScript (w/types)
 
-[![Join the chat at https://gitter.im/luggage66/jsx-xsl-fo](https://badges.gitter.im/luggage66/jsx-xsl-fo.svg)](https://gitter.im/luggage66/jsx-xsl-fo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## Usage
 
-This library generates xsl-fo output from a react-like API. It may turn into a react renderer in the future, but for now, it's standalone.
+This library produces XML output in the [XSL FO](https://www.w3.org/TR/xsl11/) format. You then need to pass that through an FO render (e.g. [Apache FOP](https://xmlgraphics.apache.org/fop/)) ([Github](https://github.com/apache/xmlgraphics-fop)) to generate a PDF.
 
-```js
-/** @jsx XSLFO.createElement */
-import XSLFO, { XSLFO } from 'jsx-xsl-fo';
+In this example the .fo output from this library is fed into `fop` to generate a PDF:
 
-// create an element
-var element = XLSFO.createElement('block', { "border-top": "0.5pt solid black" }, "Hello World.");
+```sh
+node ./my-report.js | fop -fo - -pdf output.pdf
+```
 
-// or use JSX
-var element2 = <block border-top="0.5pt solid black">Hello World.</block>;
+### Minimal Example
 
-// make components as functions
-function Greeting(props) {
-    return <block>Greetings, {props.firstName} {props.lastName}!</block>;
+More examples are available at [./packages/examples](./packages/examples/README.md)
+
+```jsx
+import { renderToStream } from "@jsx-xsl-fo/core";
+
+renderToStream(
+    <root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+        <layoutMasterSet>
+            <simplePageMaster masterName="my_page">
+                <regionBody />
+            </simplePageMaster>
+        </layoutMasterSet>
+        <pageSequence masterReference="my_page">
+            <flow flowName="xsl-region-body">
+                <block>Hello World!</block>
+            </flow>
+        </pageSequence>
+    </root>,
+    process.stdout
+);
+```
+
+### Using high level components
+
+There are some helper components to handle basic page structure
+
+```jsx
+import { renderToStream } from "@jsx-xsl-fo/core";
+import { Report, PageSequence, PageContent, PageHeader, PageFooter } from 'jsx-xsl-fo/reporting';
+
+renderToStream(
+    <Report>
+        <PageSequence>
+            <PageHeader>
+                <block>page <pageNumber /></block>
+            </PageHeader>
+            <PageContent>
+                <block>Hello World</block>
+            </PageContent>
+        </PageSequence>
+    </Report>,
+    process.stdout
+);
+```
+
+### Custom Components
+
+You can make your own components similar to React and other JSX libraries.
+
+
+```jsx
+// function components
+function Greeting({ firstName, lastName }) {
+    return <block>Greetings, {firstName} {lastName}!</block>;
 }
 
-// or as an ES6 class (here we use props.children)
+// class components
 class GoodBye extends Component {
     render() {
         return <block>
@@ -29,91 +78,24 @@ class GoodBye extends Component {
 }
 
 // and build more complex documents with them
-let message = {
-    to: {
-        firstName: "Jimbo",
-        lastName: "Jones"
-    },
-    body: {
-        "Ha ha!"
-    }
-};
-
-let element3 = <block>
-    <Greeting {...message.to} />
-    <GoodBye>{message.to.firstName}</GoodBye>
+let myBlock = <block>
+    <Greeting firstName="Bob" lastName="Smith" />
+    <GoodBye>Bob</GoodBye>
 </block>;
-
-// components can be nested and manipulate their children with a
-// react-like API (e.g. XSLFO.Children.map() and XSLFO.cloneElement()).
-// examples coming.
 ```
 
-Now, you may want to get some output, eventually..
+### API
 
-```js
-
+```jsx
+import { renderToStream, renderToString } from "@jsx-xsl-fo/core";
 // as a string (probably not good for large documents)
-let aString = XLSFO.renderToString(element);
+let aString = renderToString(<Foo />);
 
 // to a stream.
-XLSFO.renderToStream(element, process.stdout);
+renderToStream(<Foo />, process.stdout);
 ```
 
-# More examples
-
-More examples can be seen at: https://github.com/luggage66/jsx-xsl-fo-examples
-
-# Helper components
-
-I am also working on a library of helper components to handle some of the setup. e.g.
-
-```js
-/** @jsx XSLFO.createElement */
-import XSLFO, { Component } from 'jsx-xsl-fo';
-import {
-    Report,
-    PageSequence,
-    PageContent,
-    PageHeader,
-    PageFooter
-} from 'jsx-xsl-fo/reporting';
-
-let myReport = <Report>
-    <PageSequence>
-        <PageHeader>
-            <block text-align="end">Page <pageNumber /></block>
-        </PageHeader>
-        <PageContent>
-            "Hello World."
-        </PageContent>
-    </PageSequence>
-</Report>;
-
-XSLFO.renderToStream(myReport, process.stdout);
-```
-
-This will render to:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
-    <fo:layout-master-set>
-        <fo:simple-page-master master-name="101c0990-4460-4307-8507-7d2d1ddcae68" page-height="29.7cm" page-width="21.0cm" margin="2cm">
-            <fo:region-body/>
-            <fo:region-before/>
-        </fo:simple-page-master>
-    </fo:layout-master-set>
-    <fo:page-sequence master-reference="101c0990-4460-4307-8507-7d2d1ddcae68">
-        <fo:static-content flow-name="xsl-region-before">
-            <fo:block text-align="end">Page
-                <fo:page-number/>
-            </fo:block>
-        </fo:static-content>
-        <fo:flow flow-name="xsl-region-body">"Hello World."</fo:flow>
-    </fo:page-sequence>
-</fo:root>
-```
+### dangerouslySetInnerXML
 
 If you need to embed some other xml (e.g. SVG) use `dangerouslySetInnerXML`.
 
@@ -122,30 +104,48 @@ If you need to embed some other xml (e.g. SVG) use `dangerouslySetInnerXML`.
 </instream-foreign-object>
 ```
 
-# Changes
+## Configuration
 
-## 2.1: ?
+This library works as a jsx runtime compatible with Babel's `jsxImportSource` and TypeScript's `jsxImportSource`
 
-## 3.0:
+### TypeScript `tsconfig.json`
 
-* JSX namespace no longer global.
-
-This style of import works (For JSX)
-
-```ts
-/* @jsx createReportElement */
-import { createElement as createReportElement } from 'jsx-xsl-fo';
+```json
+{
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "@jsx-xsl-fo/core",
+    }
+}
 ```
 
-This does NOT work.
+### Babel/TypeScript Comments:
 
-```ts
-/* @jsx XSLFO.createElement */
-import * as XSLFO from 'jsx-xsl-fo';
+```js
+/** @jsxImportSource custom-jsx-library */
+
+const foo = <block>Hello</block>;
 ```
 
+## Development
 
-# Future Plans
+### Prerequisites:
 
-* Medium Term
-  * More helpful Components for common reporting tasks
+* Node.js 18+ (earlier may work but untested)
+* pnpm
+
+### Building:
+
+```sh
+pnpm install
+pnpm run -r build
+
+# run tests
+pnpm run -r test
+```
+
+### Project Organization
+
+* `packages/core` - The main library. This gets published to NPM
+* `packages/cli` - A CLI tool for converting older files to the current version of jxs-xsl-fo
+* `packages/examples` - Example uses of the main library

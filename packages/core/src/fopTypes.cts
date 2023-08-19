@@ -373,9 +373,9 @@ export interface MarginPropertiesHorizontalSpace_unsupported_by_FOP {
     spaceStartPrecedence?: string;
 }
 
-export interface MarginPropertiesBlock extends MarginPropertiesBasic, MarginPropertiesVerticalSpace {}
+export interface MarginPropertiesBlock extends MarginPropertiesBasic, MarginPropertiesVerticalSpace, MarginPropertiesVerticalSpace_unsupported_by_FOP {}
 
-export interface MarginPropertiesInline extends MarginPropertiesBasic, MarginPropertiesHorizontalSpace {}
+export interface MarginPropertiesInline extends MarginPropertiesBasic, MarginPropertiesHorizontalSpace, MarginPropertiesVerticalSpace_unsupported_by_FOP {}
 
 export interface ReferenceProperties {}
 
@@ -929,7 +929,7 @@ export interface PageSequenceMasterType extends InheritableProperties {
 
 export interface PageSequenceType extends InheritableProperties {
     id?: string;
-    masterReference: string;
+    masterReference?: string;
     initialPageNumber?: string;
     forcePageCount?: force_page_count_Type;
     format?: string;

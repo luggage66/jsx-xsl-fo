@@ -1,4 +1,4 @@
-import { XlsfoComponent, ComponentClass } from './xslfoComponent';
+import { ComponentClass } from './xslfoComponent.cjs';
 
 export interface TagProps<T> {
     id?: string;

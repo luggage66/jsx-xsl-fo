@@ -1,0 +1,53 @@
+{
+  "name": "@jsx-xsl-fo/reporting",
+  "version": "1.0.0",
+  "description": "Use JSX as a template language to generate XSL-FO documents.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/module-index.d.mts",
+        "default": "./dist/module-index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/ tsconfig.tsbuildinfo",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luggage66/jsx-xsl-fo.git"
+  },
+  "keywords": [
+    "fop",
+    "xsl-fo",
+    "jsx",
+    "reporting",
+    "documents"
+  ],
+  "author": "Donald Mull Jr.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luggage66/jsx-xsl-fo/issues"
+  },
+  "homepage": "https://github.com/luggage66/jsx-xsl-fo#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@jsx-xsl-fo/core": "workspace:^"
+  }
+}

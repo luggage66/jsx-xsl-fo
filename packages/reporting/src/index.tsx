@@ -1,23 +1,36 @@
-/* @jsx createElement */
-import { createElement } from './index';
-import * as XSLFO from './index';
+// /** @jsxImportSource . */
+import { InheritableProperties } from '@jsx-xsl-fo/core';
+// import { createElement } from './index.cjs';
+import * as XSLFO from "@jsx-xsl-fo/core";
 import * as uuid from 'uuid';
 
-export class Report extends XSLFO.Component<{}> {
-    render() {
-        let pageSequences = [];
+interface PageSequenceItem {
+    sequenceId: string;
+    element: XSLFO.XslfoElement<any>;
+    pageSize: any;
+    props: any;
+    body: undefined | XSLFO.XslfoElement<unknown>;
+    header: undefined | XSLFO.XslfoElement<unknown>;
+    footer: undefined | XSLFO.XslfoElement<unknown>;
+}
 
-        let newChildren = XSLFO.Children.map(this.props.children, (child) => {
+export class Report extends XSLFO.Component<InheritableProperties> {
+    render() {
+        let pageSequences: PageSequenceItem[] = [];
+
+        XSLFO.Children.map(this.props.children as any, (child) => {
             if (child) {
                 if (child.type !== PageSequence) {
                     throw new Error("Unknown child type. needs PageSequence");
                 }
 
+                // console.log("CHILD", child);
+
                 let sequenceId = uuid.v4();
 
                 let { children, pageSize, ...props } = child.props;
 
-                let s = {
+                let s: PageSequenceItem = {
                     sequenceId,
                     element: XSLFO.cloneElement(child, { sequenceId }),
                     pageSize,
@@ -28,16 +41,20 @@ export class Report extends XSLFO.Component<{}> {
                 };
 
                 XSLFO.Children.map(children, (flow) => {
+                    // console.log("FLOW", flow);
+
+                    const { children, ...props } = flow.props;
+
                     if (flow) {
                         switch (flow.type) {
                             case PageHeader:
-                                s.header = <regionBefore {...flow.props} />;
+                                s.header = <regionBefore {...props} />;
                                 break;
                             case PageFooter:
-                                s.footer = <regionAfter {...flow.props} />;
+                                s.footer = <regionAfter {...props} />;
                                 break;
                             case PageContent:
-                                s.body = <regionBody {...flow.props} />;
+                                s.body = <regionBody {...props} />;
                                 break;
                             default:
                                 throw new Error("Unknown child type. needs PageFooter, PageHeader or PageContent");
@@ -49,7 +66,9 @@ export class Report extends XSLFO.Component<{}> {
             }
         });
 
-        return <root {...{"xmlns:fo": "http://www.w3.org/1999/XSL/Format"}} {...this.props}>
+        // console.log("XX", pageSequences.map(x => x.element.props.children));
+
+        return <root xmlns:fo="http://www.w3.org/1999/XSL/Format" {...this.props}>
             <layoutMasterSet>
                 {pageSequences.map(s => {
                     return <simplePageMaster master-name={s.sequenceId} {...s.pageSize} {...s.props} >
@@ -62,7 +81,7 @@ export class Report extends XSLFO.Component<{}> {
     }
 }
 
-export class PageSequence extends XSLFO.Component<{ sequenceId: string }> {
+export class PageSequence extends XSLFO.Component<{ sequenceId?: string }> {
 
     render() {
         return <pageSequence masterReference={this.props.sequenceId}>
@@ -71,7 +90,7 @@ export class PageSequence extends XSLFO.Component<{ sequenceId: string }> {
     }
 }
 
-export class PageContent extends XSLFO.Component<void> {
+export class PageContent extends XSLFO.Component<{}> {
     render() {
         return <flow flowName="xsl-region-body">
             {this.props.children}
@@ -79,7 +98,7 @@ export class PageContent extends XSLFO.Component<void> {
     }
 }
 
-export class PageHeader extends XSLFO.Component<void> {
+export class PageHeader extends XSLFO.Component<{}> {
     render() {
         return <staticContent flowName="xsl-region-before">
             {this.props.children}
@@ -87,7 +106,7 @@ export class PageHeader extends XSLFO.Component<void> {
     }
 }
 
-export class PageFooter extends XSLFO.Component<void> {
+export class PageFooter extends XSLFO.Component<{}> {
     render() {
         return <staticContent flowName="xsl-region-after">
             {this.props.children}

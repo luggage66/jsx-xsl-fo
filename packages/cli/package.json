@@ -1,0 +1,49 @@
+{
+  "name": "@jsx-xsl-fo/cli",
+  "version": "1.0.0",
+  "description": "Use JSX as a template language to generate XSL-FO documents.",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/ tsconfig.tsbuildinfo"
+  },
+  "bin": {
+    "jsx-xsl-fo": "dist/index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luggage66/jsx-xsl-fo.git"
+  },
+  "keywords": [
+    "fop",
+    "xsl-fo",
+    "jsx",
+    "reporting",
+    "documents"
+  ],
+  "author": "Donald Mull Jr.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luggage66/jsx-xsl-fo/issues"
+  },
+  "homepage": "https://github.com/luggage66/jsx-xsl-fo#readme",
+  "devDependencies": {
+    "@types/babel-traverse": "^6.25.7",
+    "@types/babel__generator": "^7.6.4",
+    "@types/babel__traverse": "^7.20.1",
+    "@types/jsdom": "^21.1.2",
+    "@types/node": "^20.5.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@babel/generator": "^7.22.10",
+    "@babel/parser": "^7.22.11",
+    "@babel/traverse": "^7.22.11",
+    "@babel/types": "^7.22.11",
+    "commander": "^11.0.0",
+    "jsdom": "^22.1.0",
+    "@jsx-xsl-fo/core": "workspace:^"
+  }
+}

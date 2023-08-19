@@ -1,9 +1,9 @@
-import { XslfoNode } from './elements';
+import { XslfoNode } from './elements.cjs';
 
 export abstract class XlsfoComponent<TProps> {
     props: Readonly<{ children?: XslfoNode }> & Readonly<TProps>;
 
-    constructor(props: TProps) {
+    constructor(props: TProps & { children?: XslfoNode }) {
         this.props = props;
     }
 

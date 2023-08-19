@@ -1,0 +1,24 @@
+{
+  "name": "@jsx-xsl-fo/examples",
+  "version": "1.0.0",
+  "description": "Examples",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/ tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@jsx-xsl-fo/core": "workspace:^",
+    "@jsx-xsl-fo/reporting": "workspace:^"
+  },
+  "devDependencies": {
+    "@jsx-xsl-fo/cli": "workspace:^",
+    "@types/node": "^20.5.1",
+    "esbuild": "^0.19.2",
+    "typescript": "^5.1.6"
+  }
+}

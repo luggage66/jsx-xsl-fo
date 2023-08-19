@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "typeRoots": ["./missing-types", "./node_modules/@types"],
+        "strict": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "@jsx-xsl-fo/core",
+        "target": "ES2020",
+        "lib": ["es2015", "dom"],
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "sourceMap": true,
+        "outDir": "dist/",
+        "rootDir": "src/"
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "references": [
+        { "path": "../core" }
+    ]
+}

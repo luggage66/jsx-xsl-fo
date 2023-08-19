@@ -1,10 +1,8 @@
-import * as decamelize from 'decamelize';
-import * as XMLWriter from 'xml-writer';
-import * as process from 'process';
+import decamelize from 'decamelize';
+import XMLWriter from 'xml-writer';
 // import { XlsfoComponent } from './xslfoComponent';
-import { XlsfoComponent } from './xslfoComponent';
-import { TagProps, XslfoElement, XslfoNode } from './elements';
-import { Elements } from './fopTypes';
+import { ComponentClass, XlsfoComponent } from './xslfoComponent.cjs';
+import { StatelessComponent, XslfoElement, XslfoNode } from './elements.cjs';
 
 // tslint:disable-next-line:variable-name
 const XSLFOElementType = Symbol('xslfo.element');
@@ -42,60 +40,56 @@ const twoPartProperties = [
     'space.minimum'
 ].map(p => p.replace(/[.].*/, ''));
 
-function fixAttributeName(attributeName) {
+export function camelAttrNameToNative(attributeName: string): string {
     attributeName = decamelize(attributeName, '-');
 
     const splitFrom = twoPartProperties.find(p => attributeName.indexOf(p) === 0);
 
     if (splitFrom) {
-        return `${splitFrom}.${attributeName.substring(splitFrom.length + 1)}`;
+        const postfix = attributeName.substring(splitFrom.length + 1);
+        if (postfix) {
+            return `${splitFrom}.${attributeName.substring(splitFrom.length + 1)}`;
+        }
+        else {
+            return attributeName;
+        }
     }
     else {
         return attributeName;
     }
 }
 
-function renderAttributes(attributes) {
-    if (!attributes) { return; }
+function capitalizeWord(word: string): string {
+  if (word.length < 1) return "";
 
-    return Object.keys(attributes).reduce((prev, curr) => {
-        return prev + (attributes[curr] !== undefined ? ' ' + fixAttributeName(curr) + '="' + attributes[curr] + '"' : '');
-    }, '');
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-export function createElement<P>(type, props, ...children: Array<XslfoNode>): XslfoElement<P> {
+function camelize(input: string) {
+  return input.split(/[-.]/)
+    // .map(s => s.toLowerCase())
+    .map((s, i) => i > 0 ? capitalizeWord(s) : s)
+    .join("");
+}
+
+export function nativeElementNameToJsx(elementName: string) {
+  return camelize(elementName.replace(/^fo:/, ""));
+}
+
+export function createElement<P>(type: string | ComponentClass<P> | StatelessComponent<P>, props: P, key?: string): XslfoElement<P> {
+    // if (typeof type === 'string') {
+    //     console.log("CREATEELEMENT", type, props);
+    // }
     const element = {
         $$typeof: XSLFOElementType,
         type,
         props: { ...props }
     };
 
-    if (children) { element.props.children = children.length === 1 ? children[0] : children; }
-
     return element;
 }
 
-export namespace createElement {
-    export namespace JSX {
-        export interface Element extends XslfoElement<any> {}
-        export interface ElementClass extends XlsfoComponent<any> {
-            render(): XslfoNode;
-        }
-        export interface ElementAttributesProperty { props: {}; }
-
-        export interface IntrinsicAttributes {
-            // key?: string | number;
-        }
-        export interface IntrinsicClassAttributes<T> {}
-
-        export interface IntrinsicElements extends Elements {}
-        // interface IntrinsicElements {
-        //     [name: string]: any;
-        // }
-    }
-}
-
-function elementToStream(element, writer) {
+function elementToStream(element: string | ProcessedNode | (string | ProcessedNode)[], writer: XMLWriter) {
     if (!element) { return; }
 
     if (typeof(element) === 'string') {
@@ -107,14 +101,27 @@ function elementToStream(element, writer) {
     else {
         writer.startElementNS('fo', element.tag);
 
-        let innerXML;
+        let innerXML: string | undefined = undefined;
 
         for (const attributeName in element.attributes) {
+            const attributeValue = element.attributes[attributeName];
+
             if (attributeName === 'dangerouslySetInnerXML') {
-                innerXML = element.attributes[attributeName].__xml;
+                if (typeof attributeValue === "object" && attributeValue !== null && "__xml" in attributeValue) {
+                    innerXML = attributeValue.__xml as any;
+                }
+                else {
+                    throw new Error("no '__xml' property in value supplied to dangerouslySetInnerXML");
+                }
+            }
+            else if (typeof attributeValue === 'string') {
+                writer.writeAttribute(camelAttrNameToNative(attributeName), attributeValue);
+            }
+            else if (typeof attributeValue === 'undefined') {
+                // do nothing.
             }
             else {
-                writer.writeAttribute(fixAttributeName(attributeName), element.attributes[attributeName]);
+                throw new Error(`Unknown attributes ${attributeName} value type ${typeof attributeValue} expected string or {__xml}`);
             }
         }
 
@@ -129,15 +136,19 @@ function elementToStream(element, writer) {
     }
 }
 
-function renderToXmlWriter(element, writer) {
+function renderToXmlWriter(element: XslfoElement<unknown>, writer: XMLWriter) {
+    // console.log("ORIGINAL", element);
+
     const elementTree = processElement(element);
+
+    // console.log("PROCESSED", elementTree);
 
     writer.startDocument('1.0', 'UTF-8');
     elementToStream(elementTree, writer);
     writer.endDocument();
 }
 
-export function renderToString(element) {
+export function renderToString(element: XslfoElement<any>) {
     const writer = new XMLWriter(true);
     renderToXmlWriter(element, writer);
 
@@ -146,22 +157,23 @@ export function renderToString(element) {
 
 export function renderToStream(element: XslfoElement<any>, stream: NodeJS.WritableStream) {
     const writer = new XMLWriter(true, (a, b) => {
-        stream.write(a, 'utf8');
+        stream.write(a, b);
     });
     renderToXmlWriter(element, writer);
 }
 
+type ChildrenList = XslfoElement<any> | XslfoElement<any>[];
 // tslint:disable-next-line:variable-name
 export const Children = {
-    map(children, fn, thisArg?: any) {
+    map<R>(children: ChildrenList, fn: (children: XslfoElement<any>) => R, thisArg?: any): R | R[] {
         if (Array.isArray(children)) {
-            Array.prototype.forEach.call(children, (child) => Children.map(child, fn, thisArg));
+            return Array.prototype.map.call(children, (child:XslfoElement<any>) => fn(child)) as R[];
         }
         else {
             return fn.call(thisArg, children);
         }
     },
-    only(children) {
+    only(children: ChildrenList) {
         if (Array.isArray(children)) {
             throw new Error('XSLFO.Children.only should only be passed a children with exactly one child.');
         }
@@ -172,16 +184,26 @@ export const Children = {
         return children;
     },
     // prolly not the most performant
-    count(children) {
+    count(children: ChildrenList) {
         let count = 0;
         this.map(children, x => count++);
         return count;
     }
 };
 
-export function processElement(element) {
-    if (!element) { return element; }
+interface ProcessedNode {
+    tag: string;
+    attributes: Record<string, unknown>;
+    children: string | ProcessedNode | (string | ProcessedNode)[];
+}
 
+export function processElement(element: XslfoNode[]): (string | ProcessedNode)[];
+export function processElement(element: XslfoNode): string | ProcessedNode;
+export function processElement(element: XslfoNode | XslfoNode[]): string | ProcessedNode | (string | ProcessedNode)[] {
+
+    if (typeof(element) === 'boolean') {
+        return element ? "true" : "false";
+    }
     if (typeof(element) === 'string') {
         return element;
     }
@@ -191,15 +213,20 @@ export function processElement(element) {
     else if (Array.isArray(element)) {
         return element.map(processElement);
     }
+    else if (!element) {
+        return "";
+    }
     else {
         if (element.$$typeof !== XSLFOElementType) {
-            throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${element.$$typeof}`);
+            throw Error(`Not an XSLFOElement, instead of ${typeof(element)}, ${element.$$typeof.toString()}`);
         }
+
+        // console.log("FF", element);
 
         if (typeof(element.type) === 'string') {
             const { children, ...attributes } = element.props;
 
-            const processedChildren = processElement(children);
+            const processedChildren = processChildren(children);
 
             return {
                 tag: decamelize(element.type, '-'),
@@ -210,10 +237,17 @@ export function processElement(element) {
         else {
             let childTree;
 
-            if (typeof(element.type === 'function')) {
-                const type = new element.type(element.props);
+            if (typeof(element.type) === 'function') {
+                let type: XlsfoComponent<any> | XslfoElement<any>;
 
-                if (type.render) {
+                try {
+                    type = new (element.type as ComponentClass<any>)(element.props);
+                }
+                catch {
+                    type = (element.type as StatelessComponent<any>)(element.props)
+                }
+
+                if ("render" in type) {
                     childTree = type.render();
                 }
                 else {
@@ -229,12 +263,20 @@ export function processElement(element) {
     }
 }
 
-export function cloneElement(element, props, ...children) {
-    const { props: originalProps, children: originalChildren, ...rest } = element;
+export function processChildren(children: ChildrenList) {
+    if (Array.isArray(children)) {
+        return children.map(processElement)
+    }
+    else {
+        return processElement(children);
+    }
+}
+
+export function cloneElement<T>(element: XslfoElement<T>, props: T, ...children: XslfoNode[]): XslfoElement<T> {
+    const { props: originalProps, ...rest } = element;
 
     return {
         ...rest,
-        props: Object.assign(Object.create(null), originalProps, props),
-        children: (children ? children : originalChildren)
+        props: Object.assign(Object.create(null), originalProps, props)
     };
 }
