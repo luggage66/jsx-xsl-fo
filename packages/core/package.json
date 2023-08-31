@@ -30,7 +30,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "jsx-runtime.d.ts"
   ],
   "scripts": {
     "build": "tsc",
