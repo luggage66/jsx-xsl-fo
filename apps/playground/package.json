@@ -1,0 +1,27 @@
+{
+  "name": "@jsx-xsl-fo/playground",
+  "version": "1.0.2",
+  "description": "Playground app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "esbuild --bundle src/index.tsx --outdir=public/js --loader:.ttf=file --servedir=public",
+    "build:monacoworkers": "node build-monacoworkers.cjs",
+    "clean": "rm -rf dist/ tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@jsx-xsl-fo/core": "workspace:^",
+    "@jsx-xsl-fo/reporting": "workspace:^",
+    "monaco-editor": "^0.41.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.1",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "esbuild": "^0.19.2",
+    "fs-extra": "^11.1.1",
+    "typescript": "^5.1.6"
+  }
+}

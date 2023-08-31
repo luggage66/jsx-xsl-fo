@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/luggage66/jsx-xsl-fo#readme",
   "workspaces": [
+    "apps/",
     "packages/*",
     "examples/*"
   ],
