@@ -1,6 +1,6 @@
 {
   "name": "@jsx-xsl-fo/reporting",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Use JSX as a template language to generate XSL-FO documents.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,9 +45,11 @@
   },
   "homepage": "https://github.com/luggage66/jsx-xsl-fo#readme",
   "devDependencies": {
+    "@types/uuid": "^9.0.2",
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@jsx-xsl-fo/core": "workspace:^"
+    "@jsx-xsl-fo/core": "workspace:^",
+    "uuid": "^9.0.0"
   }
 }
