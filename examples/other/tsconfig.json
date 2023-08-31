@@ -12,10 +12,12 @@
         "jsxImportSource": "@jsx-xsl-fo/core",
         "outDir": "dist/",
         "rootDir": "src/",
-        "allowJs": true
+        "allowJs": true,
+        "resolveJsonModule": true
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "src/**/*.json"
     ],
     "references": [
         { "path": "../../packages/core" },

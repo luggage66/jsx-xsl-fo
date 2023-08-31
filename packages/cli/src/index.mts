@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import { camelizeJsxFile } from "./commands/camelize.mjs";
 import { foFileToJsx } from "./commands/foToJsx.mjs";
+import { fopExampleXmlFileToJson } from "./commands/fopExampleXmlToJson.mjs";
 
 async function main() {
   const program = new Command();
@@ -18,6 +19,12 @@ async function main() {
     .description('Converts an .fo file to .jsx')
     .argument('<path>', 'File path')
     .action(foFileToJsx);
+
+  program
+    .command('read-xml')
+    .description('Converts an .fo file to .jsx')
+    .argument('<path>', 'File path')
+    .action(fopExampleXmlFileToJson);
 
   await program.parseAsync(process.argv);
 }
