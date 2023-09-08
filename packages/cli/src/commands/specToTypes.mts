@@ -1,9 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { JSDOM } from "jsdom";
-import { XslSpecFileVisitor } from "../xml-node-utils.mjs";
 import { SpecElement, SpecAst, SpecAttribute } from "./spec/ast.mjs";
-import { ElementAttribute, ElementType, TypeModel, analyzeAst } from "./spec/typeModel.mjs";
-import { generateTypeScript } from "./spec/codeGenerator.mjs";
+import { analyzeAst } from "./spec/typeModel.mjs";
+import { generateTypeScriptCode } from "./spec/codeGenerator.mjs";
 
 export async function specFileToTypes(path: string) {
   const code = await readFile(path, { encoding: 'utf8' });
@@ -15,9 +14,6 @@ export async function specToTypes(xmlText: string) {
   const dom = new JSDOM(xmlText, {
     contentType: "application/xml"
   });
-
-  // const visitor = new XslSpecFileVisitor();
-  // visitor.Node(dom.window.document.documentElement);
 
   const foElements = dom.window.document.documentElement.querySelectorAll("div3[id^=fo_]");
 
@@ -58,15 +54,9 @@ export async function specToTypes(xmlText: string) {
   await writeFile("spec-ast.json", JSON.stringify(specAst, null, 2), { encoding: 'utf8' });
 
   const typeModel = analyzeAst(specAst);
-
   await writeFile("type-model.json", JSON.stringify(typeModel, null, 2), { encoding: 'utf8' });
 
-  // console.log(JSON.stringify(typeModel, null, 2));
-
-  await writeFile("spec.ts", generateTypeScript(typeModel), { encoding: 'utf8' });
-
-  // const visitor = new DomXmlVisitor();
-  // visitor.visitNode(dom.window.document.documentElement);
+  await writeFile("spec.ts", generateTypeScriptCode(typeModel), { encoding: 'utf8' });
 }
 
 function parseAttributes(element: HTMLElement) {
@@ -84,19 +74,19 @@ function parseAttributeSpecTable(table: HTMLTableElement): { media: string; valu
   let media = "";
   let value = "";
 
-  // for (const row of table.querySelectorAll("tr")) {
-  //   const name = row.querySelector("td:nth-child(1)")!.textContent?.trim();
-  //   const cellValue = row.querySelector("td:nth-child(2)")!.textContent!.trim();
+  for (const row of table.querySelectorAll("tr")) {
+    const name = row.querySelector("td:nth-child(1)")!.textContent?.trim();
+    const cellValue = row.querySelector("td:nth-child(2)")!.textContent!.trim();
 
-  //   switch (name) {
-  //     case "Value:":
-  //       value = cellValue;
-  //       break;
-  //     case "Media":
-  //       value = cellValue;
-  //       break;
-  //   }
-  // }
+    switch (name) {
+      case "Value:":
+        value = cellValue;
+        break;
+      case "Media":
+        media = cellValue;
+        break;
+    }
+  }
 
   return { media, value };
 }
@@ -104,7 +94,14 @@ function parseAttributeSpecTable(table: HTMLTableElement): { media: string; valu
 function parseAttributeSpec(root: HTMLElement): SpecAttribute {
   const name = root.querySelector("head")!.textContent!.trim();
 
-  const { media, value } = parseAttributeSpecTable(root.querySelector("table.prop-summary")!);
+  const propSummaryTable = root.querySelector("table.prop-summary");
+
+  let media: string = "";
+  let value: string = "";
+
+  if (propSummaryTable) {
+    ({ media, value } = parseAttributeSpecTable(root.querySelector("table.prop-summary")!));
+  }
 
   return {
     name,

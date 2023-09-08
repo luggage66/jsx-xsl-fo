@@ -21,6 +21,13 @@ export interface ElementType {
   attributes: ElementAttribute[];
 }
 
+export interface AttributeType {
+  name: string;
+  types: AttributeTypeValue[];
+}
+
+export type AttributeTypeValue = { string: string } | { ref: string }
+
 function capitalizeWord(word: string): string {
   if (word.length < 1) return "";
 
@@ -41,6 +48,10 @@ function refNameToPropertyName(tagName: string) {
   return [first, ...(rest.map(capitalizeWord))].join("");
 }
 
+function parsePropertyValues(values: string): AttributeTypeValue[] {
+  return [];
+}
+
 function createElementTypeModel(ast: SpecAst, element: SpecElement): ElementType {
   return {
     name: tagNameToTypeName(element.tagName),
@@ -53,6 +64,8 @@ function createElementTypeModel(ast: SpecAst, element: SpecElement): ElementType
 }
 
 function createCommonTypeModel(ast: SpecAst, name: string, attributes: SpecAttribute[]): CommonType {
+  // console.log("createCommonTypeModel", name, attributes);
+  
   return {
     name: tagNameToTypeName(name),
     attributes: attributes.map<ElementAttribute>(a => ({
@@ -64,7 +77,9 @@ function createCommonTypeModel(ast: SpecAst, name: string, attributes: SpecAttri
 
 export function analyzeAst(ast: SpecAst): TypeModel {
   const elements = ast.elements.map(e => createElementTypeModel(ast, e));
-  const commonTypes = Object.entries(ast.attributes).filter(([key, _value]) => key !== "loose").map(([name, attributes]) => createCommonTypeModel(ast, name, attributes));
+  const commonTypes = Object.entries(ast.attributes)
+    .filter(([key, _value]) => key !== "loose")
+    .map(([name, attributes]) => createCommonTypeModel(ast, name, attributes));
 
   return {
     elements,

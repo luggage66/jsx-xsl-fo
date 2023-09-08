@@ -1,44 +1,58 @@
 import { CommonType, ElementAttribute, ElementType, TypeModel } from "./typeModel.mjs";
+import generate from "@babel/generator";
+import t from "@babel/types"
 
-export function generateTypeScript(typeModel: TypeModel) {
-  return `// Generated code
-
-type UNKNOWNTYPE = void;
-
-${typeModel.commonTypes.map(generateCommonType).join("\n\n")}
-
-${typeModel.elements.map(generateElementType).join("\n\n")}
-
-${generateElementListType(typeModel.elements)}
-`;
+export function generateTypeScriptCode(typeModel: TypeModel): string {
+  const programAst = generateTypeScript(typeModel);
+  const newCode = generate.default(programAst, {});
+  return newCode.code;
 }
 
-function generateCommonType(commonType: CommonType): string {
-  return `interface ${commonType.name} {
-  ${commonType.attributes.map(generateElementAttribute).join("\n  ")}
-}`;
+function generateTypeScript(typeModel: TypeModel): t.Program {
+  return t.program([
+    ...typeModel.commonTypes.map(generateCommonType),
+    ...typeModel.elements.map(generateElementType),
+    generateElementListType(typeModel.elements)
+  ]);
 }
 
-function generateElementType(element: ElementType): string {
-  const extendsText = element.attributeGroups.length > 0
-    ? `extends ${element.attributeGroups.join(", ")} `
-    : "";
-
-  return `interface ${element.name} ${extendsText}{
-  ${element.attributes.map(generateElementAttribute).join("\n  ")}
-}`;
+function generateCommonType(commonType: CommonType): t.TSInterfaceDeclaration {
+  return t.tsInterfaceDeclaration (
+    t.identifier(commonType.name),
+    null,
+    null,
+    t.tsInterfaceBody(commonType.attributes.map(generateElementAttribute))
+  );
 }
 
-function generateElementAttribute(attribute: ElementAttribute): string {
-  return `${attribute.name}: ${attribute.type}`;
+function generateElementType(element: ElementType): t.TSInterfaceDeclaration {
+  return t.tsInterfaceDeclaration (
+    t.identifier(element.name),
+    null,
+    null,
+    t.tsInterfaceBody(element.attributes.map(generateElementAttribute))
+  );
 }
 
-function generateElementListType(elements: ElementType[]): string {
-  return `interface Elements {
-  ${elements.map(generateElementListAtribute).join(",\n  ")}
-}`;
+function generateElementAttribute(attribute: ElementAttribute): t.TSPropertySignature {
+  return t.tsPropertySignature(
+    t.identifier(attribute.name),
+    t.tsTypeAnnotation(t.tsTypeReference(t.identifier(attribute.type)))
+  );
 }
 
-function generateElementListAtribute(element: ElementType): string {
-  return `${element.name}: ${element.name}`;
+function generateElementListType(elements: ElementType[]): t.TSInterfaceDeclaration {
+  return t.tsInterfaceDeclaration (
+    t.identifier("Elements"),
+    null,
+    null,
+    t.tsInterfaceBody(elements.map(generateElementListAtribute))
+  );
+}
+
+function generateElementListAtribute(element: ElementType): t.TSPropertySignature {
+  return t.tsPropertySignature(
+    t.identifier(element.name),
+    t.tsTypeAnnotation(t.tsTypeReference(t.identifier(element.name)))
+  );
 }
