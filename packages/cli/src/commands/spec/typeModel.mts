@@ -1,29 +1,24 @@
 import { SpecAst, SpecAttribute, SpecElement, isAttributeInGroup } from "./ast.mjs";
 
 export interface TypeModel {
-  commonTypes: CommonType[];
+  commonAttributeSets: CommonAttributeSet[];
   elements: ElementType[];
 }
 
-export interface CommonType {
+export interface CommonAttributeSet{
   name: string;
   attributes: ElementAttribute[];
 }
 
 export interface ElementAttribute {
   name: string;
-  type: string;
+  type: AttributeTypeValue[];
 }
 
 export interface ElementType {
   name: string;
   attributeGroups: string[];
   attributes: ElementAttribute[];
-}
-
-export interface AttributeType {
-  name: string;
-  types: AttributeTypeValue[];
 }
 
 export type AttributeTypeValue = { string: string } | { ref: string }
@@ -49,7 +44,7 @@ function refNameToPropertyName(tagName: string) {
 }
 
 function parsePropertyValues(values: string): AttributeTypeValue[] {
-  return [];
+  return values.split("|").map(v => v.trim()).map(v => ({ string: v }));
 }
 
 function createElementTypeModel(ast: SpecAst, element: SpecElement): ElementType {
@@ -57,32 +52,32 @@ function createElementTypeModel(ast: SpecAst, element: SpecElement): ElementType
     name: tagNameToTypeName(element.tagName),
     attributes: element.attributes.filter(a => !isAttributeInGroup(ast, a)).map<ElementAttribute>(a => ({
       name: refNameToPropertyName(a),
-      type: "UNKNOWNTYPE"
+      type: [ { string: "UNKNOWNTYPE" } ]
     })),
     attributeGroups: element.attributes.filter(a => isAttributeInGroup(ast, a)).map(refNameToTypeName)
   };
 }
 
-function createCommonTypeModel(ast: SpecAst, name: string, attributes: SpecAttribute[]): CommonType {
+function createCommonAttributeSetModel(ast: SpecAst, name: string, attributes: SpecAttribute[]): CommonAttributeSet {
   // console.log("createCommonTypeModel", name, attributes);
   
   return {
     name: tagNameToTypeName(name),
     attributes: attributes.map<ElementAttribute>(a => ({
       name: refNameToPropertyName(a.name),
-      type: "UNKNOWNTYPE"
+      type: parsePropertyValues(a.value)
     })),
   };
 }
 
 export function analyzeAst(ast: SpecAst): TypeModel {
   const elements = ast.elements.map(e => createElementTypeModel(ast, e));
-  const commonTypes = Object.entries(ast.attributes)
+  const commonAttributeSets = Object.entries(ast.attributes)
     .filter(([key, _value]) => key !== "loose")
-    .map(([name, attributes]) => createCommonTypeModel(ast, name, attributes));
+    .map(([name, attributes]) => createCommonAttributeSetModel(ast, name, attributes));
 
   return {
     elements,
-    commonTypes
+    commonAttributeSets
   }
 }

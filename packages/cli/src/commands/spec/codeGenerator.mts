@@ -1,4 +1,4 @@
-import { CommonType, ElementAttribute, ElementType, TypeModel } from "./typeModel.mjs";
+import { AttributeTypeValue, CommonAttributeSet, ElementAttribute, ElementType, TypeModel } from "./typeModel.mjs";
 import generate from "@babel/generator";
 import t from "@babel/types"
 
@@ -10,13 +10,13 @@ export function generateTypeScriptCode(typeModel: TypeModel): string {
 
 function generateTypeScript(typeModel: TypeModel): t.Program {
   return t.program([
-    ...typeModel.commonTypes.map(generateCommonType),
+    ...typeModel.commonAttributeSets.map(generateCommonType),
     ...typeModel.elements.map(generateElementType),
     generateElementListType(typeModel.elements)
   ]);
 }
 
-function generateCommonType(commonType: CommonType): t.TSInterfaceDeclaration {
+function generateCommonType(commonType: CommonAttributeSet): t.TSInterfaceDeclaration {
   return t.tsInterfaceDeclaration (
     t.identifier(commonType.name),
     null,
@@ -37,8 +37,24 @@ function generateElementType(element: ElementType): t.TSInterfaceDeclaration {
 function generateElementAttribute(attribute: ElementAttribute): t.TSPropertySignature {
   return t.tsPropertySignature(
     t.identifier(attribute.name),
-    t.tsTypeAnnotation(t.tsTypeReference(t.identifier(attribute.type)))
+    generateTypeList(attribute.type)
   );
+}
+
+function generateTypeList(values: AttributeTypeValue[]) {
+  function generateType(value: AttributeTypeValue) {
+    if ("string" in value) {
+      return t.tsLiteralType(t.stringLiteral(value.string));
+    }
+    else if ("ref" in value) {
+      return t.tsTypeReference(t.identifier(value.ref));
+    }
+    else {
+      throw new Error("unrecognized code type");
+    }
+  }
+
+  return t.tsTypeAnnotation(t.tsUnionType(values.map(generateType)));
 }
 
 function generateElementListType(elements: ElementType[]): t.TSInterfaceDeclaration {
